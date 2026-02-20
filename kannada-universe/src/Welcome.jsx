@@ -90,9 +90,7 @@ function Welcome() {
       {/* MAIN CONTAINER */}
       <div className="welcome-container">
         <h1>Welcome !!!</h1>
-        <p className="subtitle">
-          Select your role to personalize your experience
-        </p>
+        <br></br>
 
         <div className="cards-grid">
           {roles.map((role, index) => (

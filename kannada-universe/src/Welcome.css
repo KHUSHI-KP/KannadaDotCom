@@ -179,9 +179,9 @@
   cursor: pointer;
 }
 
-.continue-btn:disabled {
-  background: #bbb;
-  cursor: not-allowed;
+.continue-btn{
+  background: #4109b9;
+
 }
 
 /* ===== RESPONSIVE ===== */
