@@ -36,9 +36,7 @@ function Welcome() {
   return (
     <div className="welcome-page">
 
-      {/* HEADER */}
       <header className="welcome-header">
-
         <div className="header-left">
           <img src={logo} alt="Kannada Logo" className="header-logo" />
         </div>
@@ -74,7 +72,7 @@ function Welcome() {
                 <div
                   className="dropdown-item"
                   onClick={() => {
-                    localStorage.removeItem("user");
+                    localStorage.removeItem("isLoggedIn");
                     navigate("/login");
                   }}
                 >
@@ -84,13 +82,11 @@ function Welcome() {
             )}
           </div>
         </div>
-
       </header>
 
-      {/* MAIN CONTAINER */}
       <div className="welcome-container">
         <h1>Welcome !!!</h1>
-        <br></br>
+        <br />
 
         <div className="cards-grid">
           {roles.map((role, index) => (
@@ -106,7 +102,14 @@ function Welcome() {
           ))}
         </div>
 
-        <button className="continue-btn" disabled={!selectedRole}>
+        <button
+          className="continue-btn"
+          disabled={!selectedRole}
+          onClick={() => {
+            localStorage.setItem("role", selectedRole);
+            navigate("/location");
+          }}
+        >
           Continue
         </button>
       </div>

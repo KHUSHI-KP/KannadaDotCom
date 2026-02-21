@@ -1,0 +1,124 @@
+.wrapper {
+  min-height: 100vh;
+  background: #f4f5f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.card {
+  width: 760px;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 45px 60px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+/* Back Arrow */
+.back {
+  position: absolute;
+  top: 28px;
+  left: 28px;
+  font-size: 20px;
+  color: #555;
+  cursor: pointer;
+}
+
+/* Header */
+.card h2 {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 15px;
+  color: #666;
+  margin-bottom: 35px;
+}
+
+/* Grid Layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  margin-bottom: 40px;
+}
+
+/* Social Box */
+.box {
+  background: #f2f3f5;
+  border-radius: 18px;
+  padding: 28px 20px;
+  text-align: center;
+  transition: 0.2s ease;
+}
+
+.box:hover {
+  transform: translateY(-3px);
+}
+
+/* Platform row */
+.platform {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  font-size: 18px;
+  margin-bottom: 18px;
+}
+
+.icon {
+  font-size: 22px;
+}
+
+.platform span:last-child {
+  font-weight: 500;
+}
+
+/* Connect Button */
+.connect {
+  background: #e6e7ea;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.connect:hover {
+  background: #dcdde1;
+}
+
+/* Bottom Section */
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.skip {
+  color: #555;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.continue {
+  background: linear-gradient(135deg, #6c5ce7, #8e44ad);
+  color: white;
+  border: none;
+  padding: 12px 36px;
+  border-radius: 28px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.continue:hover {
+  transform: translateY(-2px);
+}

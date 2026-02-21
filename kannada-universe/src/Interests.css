@@ -1,0 +1,70 @@
+.interests-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f8e8c9, #e7d8ff);
+}
+
+.interests-card {
+  width: 800px;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+
+.interests-card h2 {
+  text-align: center;
+}
+
+.interests-card input {
+  width: 100%;
+  padding: 12px;
+  margin: 20px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.interest-item {
+  padding: 12px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.interest-item.selected {
+  background: #6c5ce7;
+  color: white;
+  border: none;
+}
+
+.interest-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.skip-btn {
+  background: none;
+  border: none;
+  color: #777;
+  cursor: pointer;
+}
+
+.continue-btn {
+  background: #6c5ce7;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 20px;
+  cursor: pointer;
+}
