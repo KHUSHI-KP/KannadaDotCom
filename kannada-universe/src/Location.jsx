@@ -10,6 +10,10 @@ function Location() {
   const [taluk, setTaluk] = useState("");
   const [locality, setLocality] = useState("");
 
+  const goNext = () => {
+    navigate("/interests");
+  };
+
   const handleContinue = () => {
     if (!district || !taluk || !locality) {
       alert("Please select all fields");
@@ -21,12 +25,13 @@ function Location() {
       JSON.stringify({ district, taluk, locality })
     );
 
-    navigate("/interests");
+    goNext();
   };
 
   return (
     <div className="location-page">
       <div className="location-card">
+
         <h2>Select Your Location</h2>
         <p>
           We use this to connect you with your local business community
@@ -87,14 +92,15 @@ function Location() {
         </select>
 
         <div className="location-actions">
-          <button className="skip-btn" onClick={() => navigate("/dashboard")}>
-            Skip for now
-          </button>
-
           <button className="continue-btn" onClick={handleContinue}>
             Continue
           </button>
+
+          <button className="skip-btn" onClick={goNext}>
+            Skip for now
+          </button>
         </div>
+
       </div>
     </div>
   );

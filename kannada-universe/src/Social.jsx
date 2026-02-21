@@ -6,44 +6,44 @@ import { useNavigate } from "react-router-dom";
 export default function SocialLink() {
   const navigate = useNavigate();
 
-  const handleContinue = () => {
+  const goNext = () => {
     navigate("/goals");
   };
 
   return (
-    <div className="wrapper">
-      <div className="card">
+    <div className="social-wrapper">
+      <div className="social-card">
 
-        <IoArrowBack className="back" onClick={() => navigate(-1)} />
+        <IoArrowBack className="back-btn" onClick={() => navigate(-1)} />
 
-        <h2>Link your Social Media</h2>
-        <p className="subtitle">
-          Connect your accounts to publish content and track performance.
+        <h2>Connect your Social Media</h2>
+        <p className="sub">
+          Connect your accounts to publish content and track analytics.
         </p>
 
-        <div className="grid">
-          <SocialBox
+        <div className="platform-list">
+          <SocialItem
             icon={<FaFacebookF />}
             name="Facebook"
             color="#1877F2"
             url="https://www.facebook.com/login"
           />
 
-          <SocialBox
+          <SocialItem
             icon={<FaInstagram />}
             name="Instagram"
             color="#E4405F"
             url="https://www.instagram.com/accounts/login/"
           />
 
-          <SocialBox
+          <SocialItem
             icon={<FaYoutube />}
             name="YouTube"
             color="#FF0000"
             url="https://accounts.google.com/signin"
           />
 
-          <SocialBox
+          <SocialItem
             icon={<FaWhatsapp />}
             name="WhatsApp"
             color="#25D366"
@@ -51,34 +51,35 @@ export default function SocialLink() {
           />
         </div>
 
-        <div className="bottom">
-          <span className="skip" onClick={() => navigate("/goals")}>
-            Skip for now
-          </span>
+        <div className="bottom-section">
+  <button className="continue-btn" onClick={goNext}>
+     Continue
+  </button>
 
-          <button className="continue" onClick={handleContinue}>
-            Accept & Continue
-          </button>
-        </div>
+  <span className="skip-link" onClick={goNext}>
+    Skip for now
+  </span>
+</div>
 
       </div>
     </div>
   );
 }
 
-function SocialBox({ icon, name, color, url }) {
-  const handleConnect = () => {
-    window.open(url, "_blank"); // Opens login page in new tab
-  };
-
+function SocialItem({ icon, name, color, url }) {
   return (
-    <div className="box">
-      <div className="platform">
-        <span className="icon" style={{ color }}>{icon}</span>
+    <div className="platform-item">
+      <div className="left">
+        <div className="platform-icon" style={{ color }}>
+          {icon}
+        </div>
         <span>{name}</span>
       </div>
 
-      <button className="connect" onClick={handleConnect}>
+      <button
+        className="connect-btn"
+        onClick={() => window.open(url, "_blank")}
+      >
         Connect
       </button>
     </div>

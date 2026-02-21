@@ -45,16 +45,36 @@ function Welcome() {
           <div className="moving-text">
             <div className="moving-track">
               <span>
-                Empowering Karnataka Entrepreneurs |
-                Connecting Startups & Creators |
-                Driving Digital Karnataka |
-                Start • Build • Scale • Succeed |
+                Empowering Karnataka Entrepreneurs  |  
+Connecting Startups & Creators  |  
+ಕನ್ನಡ.ಕಾಮ್ Official Business Platform  |  
+ಕರ್ನಾಟಕ ಡಿಜಿಟಲ್ ಬಿಸಿನೆಸ್ ವೇದಿಕೆ  |  
+Supporting Local Businesses & Innovators  |  
+Made for Kannadigas Across the Globe  |  
+Building the Future of Digital Karnataka  |  
+Connecting Talent, Opportunity & Growth  |  
+Promoting Kannada Culture & Commerce  |  
+From Idea to Impact — Powered by Kannada  |  
+ಉದ್ಯಮಿಗಳಿಗೆ ಹೊಸ ಅವಕಾಶಗಳ ವೇದಿಕೆ  |  
+Driving Innovation. Enabling Growth.  |  
+One Platform for Business, Careers & Creators  |  
+Start • Build • Scale • Succeed  
               </span>
               <span>
-                Empowering Karnataka Entrepreneurs |
-                Connecting Startups & Creators |
-                Driving Digital Karnataka |
-                Start • Build • Scale • Succeed |
+           Empowering Karnataka Entrepreneurs  |  
+Connecting Startups & Creators  |  
+ಕನ್ನಡ.ಕಾಮ್ Official Business Platform  |  
+ಕರ್ನಾಟಕ ಡಿಜಿಟಲ್ ಬಿಸಿನೆಸ್ ವೇದಿಕೆ  |  
+Supporting Local Businesses & Innovators  |  
+Made for Kannadigas Across the Globe  |  
+Building the Future of Digital Karnataka  |  
+Connecting Talent, Opportunity & Growth  |  
+Promoting Kannada Culture & Commerce  |  
+From Idea to Impact — Powered by Kannada  |  
+ಉದ್ಯಮಿಗಳಿಗೆ ಹೊಸ ಅವಕಾಶಗಳ ವೇದಿಕೆ  |  
+Driving Innovation. Enabling Growth.  |  
+One Platform for Business, Careers & Creators  |  
+Start • Build • Scale • Succeed
               </span>
             </div>
           </div>
@@ -102,16 +122,20 @@ function Welcome() {
           ))}
         </div>
 
-        <button
-          className="continue-btn"
-          disabled={!selectedRole}
-          onClick={() => {
-            localStorage.setItem("role", selectedRole);
-            navigate("/location");
-          }}
-        >
-          Continue
-        </button>
+       <button
+  className="continue-btn"
+  onClick={() => {
+    if (selectedRole) {
+      localStorage.setItem("role", selectedRole);
+    } else {
+      localStorage.setItem("role", "Guest");
+    }
+
+    navigate("/location");
+  }}
+>
+  Continue
+</button>
       </div>
     </div>
   );

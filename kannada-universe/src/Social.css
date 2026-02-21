@@ -1,124 +1,178 @@
-.wrapper {
+/* ===== PAGE BACKGROUND ===== */
+
+.social-wrapper {
   min-height: 100vh;
-  background: #f4f5f7;
+  background: linear-gradient(135deg, #f8d76b, #d6b3ff);
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 30px;
+  padding: 40px;
 }
 
-.card {
-  width: 760px;
-  background: #ffffff;
-  border-radius: 24px;
-  padding: 45px 60px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+/* ===== CARD ===== */
+
+.social-card {
+  width: 100%;
+  max-width: 650px;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(18px);
+  border-radius: 30px;
+  padding: 60px 60px 50px;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.15);
   position: relative;
 }
 
-/* Back Arrow */
-.back {
+/* Back Button */
+
+.back-btn {
   position: absolute;
-  top: 28px;
-  left: 28px;
-  font-size: 20px;
-  color: #555;
+  top: 25px;
+  left: 25px;
+  font-size: 22px;
   cursor: pointer;
+  transition: 0.2s ease;
 }
 
-/* Header */
-.card h2 {
-  text-align: center;
+.back-btn:hover {
+  transform: translateX(-4px);
+}
+
+/* Title */
+
+.social-card h2 {
   font-size: 28px;
-  font-weight: 600;
-  margin-bottom: 8px;
+  font-weight: 700;
+  color: #2b235a;
+  margin-bottom: 10px;
 }
 
-.subtitle {
-  text-align: center;
-  font-size: 15px;
+.sub {
   color: #666;
-  margin-bottom: 35px;
-}
-
-/* Grid Layout */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
+  font-size: 15px;
   margin-bottom: 40px;
 }
 
-/* Social Box */
-.box {
-  background: #f2f3f5;
-  border-radius: 18px;
-  padding: 28px 20px;
-  text-align: center;
-  transition: 0.2s ease;
-}
+/* Platform List */
 
-.box:hover {
-  transform: translateY(-3px);
-}
-
-/* Platform row */
-.platform {
+.platform-list {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  font-size: 18px;
-  margin-bottom: 18px;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 45px;
 }
 
-.icon {
-  font-size: 22px;
-}
+/* Each Row */
 
-.platform span:last-child {
-  font-weight: 500;
-}
-
-/* Connect Button */
-.connect {
-  background: #e6e7ea;
-  border: none;
-  padding: 10px 28px;
-  border-radius: 12px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-.connect:hover {
-  background: #dcdde1;
-}
-
-/* Bottom Section */
-.bottom {
+.platform-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 20px 25px;
+  background: #f7f7f7;
+  border-radius: 20px;
+  transition: 0.3s ease;
 }
 
-.skip {
-  color: #555;
-  cursor: pointer;
-  text-decoration: underline;
+.platform-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
-.continue {
-  background: linear-gradient(135deg, #6c5ce7, #8e44ad);
-  color: white;
+/* Left Side */
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-weight: 600;
+}
+
+/* Icon Circle */
+
+.platform-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+}
+
+/* Connect Button */
+
+.connect-btn {
+  padding: 8px 20px;
+  border-radius: 14px;
   border: none;
-  padding: 12px 36px;
-  border-radius: 28px;
-  font-size: 15px;
+  background: #e0e0e0;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.connect-btn:hover {
+  background: #d5d5d5;
+}
+
+/* Continue Button */
+
+.continue-btn {
+  width: 100%;
+  padding: 15px;
+  border-radius: 24px;
+  border: none;
+  background: linear-gradient(135deg, #4a3f8f, #6c5ce7);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.continue-btn:hover {
+  transform: translateY(-2px);
+}/* Bottom Section */
+
+.bottom-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+/* Continue Button */
+
+.continue-btn {
+  width: 100%;
+  padding: 15px;
+  border-radius: 24px;
+  border: none;
+  background: linear-gradient(135deg, #4a3f8f, #6c5ce7);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.continue-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Skip Link */
+
+.skip-link {
+  font-size: 14px;
+  text-decoration: underline;
+  color: #2b235a;
   cursor: pointer;
   transition: 0.2s ease;
 }
 
-.continue:hover {
-  transform: translateY(-2px);
+.skip-link:hover {
+  opacity: 0.7;
 }

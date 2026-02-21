@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaSearch, FaCheck } from "react-icons/fa";
 import "./Interests.css";
 
 const interestsList = [
@@ -31,7 +32,7 @@ function Interests() {
     }
   };
 
-  const handleContinue = () => {
+  const goNext = () => {
     localStorage.setItem("interests", JSON.stringify(selected));
     navigate("/terms");
   };
@@ -43,16 +44,22 @@ function Interests() {
   return (
     <div className="interests-page">
       <div className="interests-card">
+
         <h2>Select Your Interests</h2>
         <p>Choose the sectors you're interested in. You can select multiple.</p>
 
-        <input
-          type="text"
-          placeholder="Search interests..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+        {/* Search */}
+        <div className="search-wrapper">
+          <FaSearch className="search-icon" />
+          <input
+            type="text"
+            placeholder="Search interests..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
 
+        {/* Interests Grid */}
         <div className="interests-grid">
           {filtered.map((item, index) => (
             <div
@@ -62,20 +69,22 @@ function Interests() {
               }`}
               onClick={() => toggleInterest(item)}
             >
+              <span className="circle">
+                {selected.includes(item) && <FaCheck size={10} />}
+              </span>
               {item}
             </div>
           ))}
         </div>
 
-        <div className="interest-actions">
-          <button className="skip-btn" onClick={() => navigate("/dashboard")}>
-            Skip for now
-          </button>
+        <button className="continue-btn" onClick={goNext}>
+          Continue
+        </button>
 
-          <button className="continue-btn" onClick={handleContinue}>
-            Continue
-          </button>
-        </div>
+        <button className="skip-btn" onClick={goNext}>
+          Skip for now
+        </button>
+
       </div>
     </div>
   );
