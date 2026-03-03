@@ -24,16 +24,20 @@ function SocialOtp() {
       return;
     }
 
+    // ✅ Declare REGEX ONLY ONCE
+    const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const usernameRegex = /^[a-zA-Z0-9._]{3,}$/;
 
+    // 🔹 Google → Only Gmail
     if (provider === "google") {
-      if (!emailRegex.test(value)) {
-        alert("Enter valid Gmail address");
+      if (!gmailRegex.test(value)) {
+        alert("Enter valid Gmail address (example@gmail.com)");
         return;
       }
     }
 
+    // 🔹 Facebook & Instagram → Email OR Username
     if (provider === "facebook" || provider === "instagram") {
       if (!emailRegex.test(value) && !usernameRegex.test(value)) {
         alert("Enter valid email or username");
@@ -45,7 +49,7 @@ function SocialOtp() {
     setStep("otp");
   };
 
-  // 🔹 OTP CHANGE
+  // 🔹 OTP INPUT CHANGE
   const handleChange = (value, index) => {
     if (!/^\d?$/.test(value)) return;
 
@@ -81,6 +85,7 @@ function SocialOtp() {
       return;
     }
 
+    // Fake OTP
     if (enteredOtp === "123456") {
       localStorage.setItem(
         "user",
@@ -105,7 +110,6 @@ function SocialOtp() {
     >
       <div className="otp-overlay">
         <div className="otp-card">
-
           {step === "email" ? (
             <>
               <h2>
@@ -173,7 +177,6 @@ function SocialOtp() {
               </button>
             </>
           )}
-
         </div>
       </div>
     </div>
