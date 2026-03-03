@@ -14,7 +14,7 @@ import Social from "./Social";
 import Goals from "./Goals";
 import Success from "./Success";
 
-
+import SocialOtp from "./SocialOtp";
 
 function App() {
   return (
@@ -34,7 +34,7 @@ function App() {
 <Route path="/social" element={<Social />} />
 <Route path="/goals" element={<Goals />} />
 <Route path="/success" element={<Success />} />
-
+<Route path="/social-otp" element={<SocialOtp />} />
     </Routes>
   );
 }

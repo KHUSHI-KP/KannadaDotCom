@@ -87,21 +87,34 @@ function Signup() {
                   Register with Email
                 </h3>
 
-                <button className="social-btn">
-                  <FcGoogle size={22} />
-                  Continue with Google
-                </button>
-
-                <button className="social-btn">
-                  <FaFacebookF size={18} color="#1877f2" />
-                  Continue with Facebook
-                </button>
-
-                <button className="social-btn">
-                  <FaInstagram size={18} color="#e4405f" />
-                  Continue with Instagram
-                </button>
-
+                <button
+  className="social-btn"
+  onClick={() =>
+    navigate("/social-otp", { state: { provider: "google" } })
+  }
+>
+  <FcGoogle size={22} />
+  Continue with Google
+</button>
+<button
+  className="social-btn"
+  onClick={() =>
+    navigate("/social-otp", { state: { provider: "facebook" } })
+  }
+>
+  <FaFacebookF size={18} color="#1877f2" />
+  Continue with Facebook
+</button>
+               
+<button
+  className="social-btn"
+  onClick={() =>
+    navigate("/social-otp", { state: { provider: "instagram" } })
+  }
+>
+  <FaInstagram size={18} color="#e4405f" />
+  Continue with Instagram
+</button>
                 <p className="login-link">
                   Already have an account?{" "}
                   <span onClick={() => navigate("/login")}>

@@ -24,7 +24,7 @@ function Login() {
       return;
     }
 
-    const storedUser = JSON.parse(localStorage.getItem("user"));
+    let storedUser = JSON.parse(localStorage.getItem("user"));
   if (!storedUser) {
     localStorage.setItem(
       "user",
@@ -39,7 +39,7 @@ function Login() {
     /*if (!storedUser) {
       setError("No account found. Please Sign Up.");
       return;
-    }*/7894561234
+    }*/
 
     if (
       storedUser.mobile === mobile &&

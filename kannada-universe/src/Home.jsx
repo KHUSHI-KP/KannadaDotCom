@@ -11,9 +11,9 @@ function Home() {
   const translations = {
     en: {
       title: "Your Kannada Universe",
-      subtitle: "Our Language, Our Emotion",
-      tagline: "One platform for everything Kannada",
-      emotion: "Connecting every Kannadiga across the world 🌍",
+      //subtitle: "Our Language, Our Emotion",
+      //tagline: "One platform for everything Kannada",
+     // emotion: "Connecting every Kannadiga across the world 🌍",
       choose: "Choose Language",
       signup: "Sign Up",
       login: "Login",
@@ -38,9 +38,9 @@ function Home() {
     },
     kn: {
       title: "ನಿಮ್ಮ ಕನ್ನಡ ವಿಶ್ವ",
-      subtitle: "ನಮ್ಮ ಭಾಷೆ, ನಮ್ಮ ಭಾವನೆ",
-      tagline: "ಎಲ್ಲಾ ಕನ್ನಡಕ್ಕಾಗಿ ಒಂದೇ ವೇದಿಕೆ",
-      emotion: "ಪ್ರಪಂಚದಾದ್ಯಂತ ಕನ್ನಡಿಗರನ್ನು ಸಂಪರ್ಕಿಸುತ್ತಿದೆ 🌍",
+      //subtitle: "ನಮ್ಮ ಭಾಷೆ, ನಮ್ಮ ಭಾವನೆ",
+      //tagline: "ಎಲ್ಲಾ ಕನ್ನಡಕ್ಕಾಗಿ ಒಂದೇ ವೇದಿಕೆ",
+      //emotion: "ಪ್ರಪಂಚದಾದ್ಯಂತ ಕನ್ನಡಿಗರನ್ನು ಸಂಪರ್ಕಿಸುತ್ತಿದೆ 🌍",
       choose: "ಭಾಷೆ ಆಯ್ಕೆಮಾಡಿ",
       signup: "ಸೈನ್ ಅಪ್",
       login: "ಲಾಗಿನ್",
