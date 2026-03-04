@@ -2,21 +2,24 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ForgotPassword.css";
 import background from "./assets/back.jpeg";
+import { t } from "./i18n";
 
 function ForgotPassword() {
+
+  const lang = localStorage.getItem("lang") || "en";
+
   const navigate = useNavigate();
   const [mobile, setMobile] = useState("");
   const [error, setError] = useState("");
 
   const handleSendOtp = () => {
     if (!/^[0-9]{10}$/.test(mobile)) {
-      setError("Enter valid 10 digit mobile number");
+      setError(t("invalidMobile", lang));
       return;
     }
 
     setError("");
 
-    // Navigate to OTP page
     navigate("/otp", { state: { mobile, fromForgot: true } });
   };
 
@@ -27,7 +30,8 @@ function ForgotPassword() {
     >
       <div className="forgot-overlay">
         <div className="forgot-card">
-          <h2>Reset Password</h2>
+
+          <h2>{t("forgotTitle", lang)}</h2>
 
           {error && <p className="error">{error}</p>}
 
@@ -37,12 +41,13 @@ function ForgotPassword() {
             onChange={(e) =>
               setMobile(e.target.value.replace(/\D/g, ""))
             }
-            placeholder="Enter registered mobile number"
+            placeholder={t("enterRegisteredMobile", lang)}
           />
 
           <button onClick={handleSendOtp}>
-            Send OTP
+            {t("sendOtp", lang)}
           </button>
+
         </div>
       </div>
     </div>
