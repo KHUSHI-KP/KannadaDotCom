@@ -129,7 +129,7 @@ function Home() {
         ))}
       </section>
 
-      <footer>{t.footer}</footer>
+      {/* footer removed as requested */}
     </div>
   );
 }

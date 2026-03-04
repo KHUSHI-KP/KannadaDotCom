@@ -70,7 +70,6 @@ function Signup() {
                     placeholder="98367 43210"
                   />
                 </div>
-
                 <button className="primary-btn" onClick={handleSendOTP}>
                   Send OTP
                 </button>
@@ -116,8 +115,8 @@ function Signup() {
   Continue with Instagram
 </button>
                 <p className="login-link">
-                  Already have an account?{" "}
-                  <span onClick={() => navigate("/login")}>
+                  Already have an account?{' '}
+                  <span onClick={() => navigate('/login')}>
                     Login
                   </span>
                 </p>
