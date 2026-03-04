@@ -256,13 +256,4 @@ header {
   color: #555;
 }
 
-/* ================= FOOTER ================= */
-
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #f5f5f5;
-  color: #2b235a;
-  font-weight: 600;
-  font-size: 15px;
-}
+/* footer removed */
