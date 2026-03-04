@@ -1,23 +1,27 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Goals.css";
+import { t } from "./i18n";
 
 function Goals() {
+
+  const lang = localStorage.getItem("lang") || "en";
+
   const navigate = useNavigate();
   const [selected, setSelected] = useState([]);
   const [customGoal, setCustomGoal] = useState("");
 
   const goals = [
-    { title: "Grow My Business", desc: "Increase my sales and find new customers." },
-    { title: "Promote My Services", desc: "Market my services to the right audience." },
-    { title: "Build Professional Network", desc: "Connect with businesses, creators, and mentors." },
-    { title: "Find Collaboration Opportunities", desc: "Partner with creators and businesses." },
-    { title: "Increase Social Media Reach", desc: "Expand my online visibility and followers." },
-    { title: "Generate More Leads", desc: "Attract potential customers consistently." },
-    { title: "Improve Customer Engagement", desc: "Build stronger relationships with customers." },
-    { title: "Learn From Industry Experts", desc: "Gain knowledge and insights from professionals." },
-    { title: "Discover Local Business Partners", desc: "Connect with nearby businesses." },
-    { title: "Sell Products Online", desc: "Expand my business digitally." }
+    { title: t("goal1", lang), desc: t("goal1Desc", lang) },
+    { title: t("goal2", lang), desc: t("goal2Desc", lang) },
+    { title: t("goal3", lang), desc: t("goal3Desc", lang) },
+    { title: t("goal4", lang), desc: t("goal4Desc", lang) },
+    { title: t("goal5", lang), desc: t("goal5Desc", lang) },
+    { title: t("goal6", lang), desc: t("goal6Desc", lang) },
+    { title: t("goal7", lang), desc: t("goal7Desc", lang) },
+    { title: t("goal8", lang), desc: t("goal8Desc", lang) },
+    { title: t("goal9", lang), desc: t("goal9Desc", lang) },
+    { title: t("goal10", lang), desc: t("goal10Desc", lang) }
   ];
 
   const toggleGoal = (goal) => {
@@ -34,15 +38,20 @@ function Goals() {
 
   return (
     <div className="goals-page">
+
       <div className="goals-card">
 
         <div className="goals-header">
-          <h2>Set Your Goals</h2>
-          <p>Tell us what you want to achieve on this platform</p>
+
+          <h2>{t("goalsTitle", lang)}</h2>
+
+          <p>{t("goalsDesc", lang)}</p>
+
         </div>
 
         {/* Scrollable Goals */}
         <div className="goals-list">
+
           {goals.map((goal, index) => (
             <div
               key={index}
@@ -51,35 +60,47 @@ function Goals() {
               }`}
               onClick={() => toggleGoal(goal.title)}
             >
+
               <input
                 type="checkbox"
                 checked={selected.includes(goal.title)}
                 readOnly
               />
+
               <div>
                 <h4>{goal.title}</h4>
                 <span>{goal.desc}</span>
               </div>
+
             </div>
           ))}
+
         </div>
 
         {/* Custom Goal */}
         <div className="custom-goal">
+
           <input
             type="text"
-            placeholder="Write your own goal..."
+            placeholder={t("customGoal", lang)}
             maxLength="100"
             value={customGoal}
             onChange={(e) => setCustomGoal(e.target.value)}
           />
+
           <span>{customGoal.length}/100</span>
+
         </div>
 
         <div className="goals-footer">
-          <button className="continue-btn" onClick={handleContinue}>
-            Continue
+
+          <button
+            className="continue-btn"
+            onClick={handleContinue}
+          >
+            {t("continue", lang)}
           </button>
+
         </div>
 
       </div>

@@ -2,24 +2,28 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaSearch, FaCheck } from "react-icons/fa";
 import "./Interests.css";
-
-const interestsList = [
-  "Retail & Wholesale",
-  "Handicrafts & Artisans",
-  "E - Commerce",
-  "Manufacturing & MSMEs",
-  "Agriculture & Agri - Business",
-  "Digital Marketing",
-  "Social Media Content",
-  "Entrepreneurship",
-  "Professional Services",
-  "Software & IT - Services",
-  "Training",
-  "Event Management",
-  "Restaurants & Food Businesses"
-];
+import { t } from "./i18n";
 
 function Interests() {
+
+  const lang = localStorage.getItem("lang") || "en";
+
+  const interestsList = [
+    t("retailWholesale", lang),
+    t("handicrafts", lang),
+    t("ecommerce", lang),
+    t("manufacturing", lang),
+    t("agriculture", lang),
+    t("digitalMarketing", lang),
+    t("socialMedia", lang),
+    t("entrepreneurship", lang),
+    t("professionalServices", lang),
+    t("softwareIT", lang),
+    t("training", lang),
+    t("eventManagement", lang),
+    t("restaurants", lang)
+  ];
+
   const [selected, setSelected] = useState([]);
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
@@ -43,24 +47,30 @@ function Interests() {
 
   return (
     <div className="interests-page">
+
       <div className="interests-card">
 
-        <h2>Select Your Interests</h2>
-        <p>Choose the sectors you're interested in. You can select multiple.</p>
+        <h2>{t("selectInterests", lang)}</h2>
+
+        <p>{t("interestDesc", lang)}</p>
 
         {/* Search */}
         <div className="search-wrapper">
+
           <FaSearch className="search-icon" />
+
           <input
             type="text"
-            placeholder="Search interests..."
+            placeholder={t("searchInterests", lang)}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
+
         </div>
 
         {/* Interests Grid */}
         <div className="interests-grid">
+
           {filtered.map((item, index) => (
             <div
               key={index}
@@ -69,20 +79,24 @@ function Interests() {
               }`}
               onClick={() => toggleInterest(item)}
             >
+
               <span className="circle">
                 {selected.includes(item) && <FaCheck size={10} />}
               </span>
+
               {item}
+
             </div>
           ))}
+
         </div>
 
         <button className="continue-btn" onClick={goNext}>
-          Continue
+          {t("continue", lang)}
         </button>
 
         <button className="skip-btn" onClick={goNext}>
-          Skip for now
+          {t("skipNow", lang)}
         </button>
 
       </div>
