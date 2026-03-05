@@ -9,18 +9,22 @@ import {
   FaWallet,
   FaComments
 } from "react-icons/fa";
+import { t } from "./i18n";
 
 export default function Success() {
+
+  const lang = localStorage.getItem("lang") || "en";
+
   const [index, setIndex] = useState(0);
   const navigate = useNavigate();
 
   const features = [
-    { icon: <FaComments />, title: "Manage Customers", desc: "Handle chats and orders easily." },
-    { icon: <FaChartLine />, title: "Track Analytics", desc: "Monitor performance insights." },
-    { icon: <FaHandshake />, title: "Connect & Collaborate", desc: "Build partnerships nearby." },
-    { icon: <FaBullhorn />, title: "Promote Business", desc: "Boost your visibility instantly." },
-    { icon: <FaUsers />, title: "Grow Network", desc: "Expand your professional reach." },
-    { icon: <FaWallet />, title: "Earn Rewards", desc: "Unlock benefits and bonuses." }
+    { icon: <FaComments />, title: t("feature1", lang), desc: t("feature1Desc", lang) },
+    { icon: <FaChartLine />, title: t("feature2", lang), desc: t("feature2Desc", lang) },
+    { icon: <FaHandshake />, title: t("feature3", lang), desc: t("feature3Desc", lang) },
+    { icon: <FaBullhorn />, title: t("feature4", lang), desc: t("feature4Desc", lang) },
+    { icon: <FaUsers />, title: t("feature5", lang), desc: t("feature5Desc", lang) },
+    { icon: <FaWallet />, title: t("feature6", lang), desc: t("feature6Desc", lang) }
   ];
 
   const next = () => {
@@ -37,11 +41,13 @@ export default function Success() {
 
   return (
     <div className="success-wrapper">
+
       <div className="success-card">
 
-        <h2>You're all set!!!</h2>
+        <h2>{t("successTitle", lang)}</h2>
+
         <p className="subtitle">
-          Here are some ways to kickstart your journey.
+          {t("successSubtitle", lang)}
         </p>
 
         {/* Carousel */}
@@ -54,6 +60,7 @@ export default function Success() {
               className="slider"
               style={{ transform: `translateX(-${index * 270}px)` }}
             >
+
               {features.map((item, i) => (
                 <div className="feature-box" key={i}>
                   <div className="feature-icon">{item.icon}</div>
@@ -61,6 +68,7 @@ export default function Success() {
                   <p>{item.desc}</p>
                 </div>
               ))}
+
             </div>
           </div>
 
@@ -68,24 +76,30 @@ export default function Success() {
 
         </div>
 
-        {/* Wallet Section */}
+        {/* Wallet */}
         <div className="wallet-box">
+
           <div className="wallet-left">
+
             <FaWallet className="wallet-icon" />
+
             <div>
-              <h3>100 Points Wallet Credit</h3>
+              <h3>{t("walletTitle", lang)}</h3>
+
               <p>
-                As a bonus, we've added 100 points wallet credit to your account
+                {t("walletDesc", lang)}
               </p>
             </div>
+
           </div>
 
           <button
             className="free-badge"
             onClick={() => navigate("/wallet")}
           >
-            Free
+            {t("free", lang)}
           </button>
+
         </div>
 
         {/* Start Button */}
@@ -93,10 +107,11 @@ export default function Success() {
           className="explore-btn"
           onClick={() => navigate("/dashboard")}
         >
-          Start Exploring
+          {t("startExplore", lang)}
         </button>
 
       </div>
+
     </div>
   );
 }

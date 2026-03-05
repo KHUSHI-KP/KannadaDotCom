@@ -2,8 +2,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import locationData from "./locationData";
 import "./Location.css";
+import { t } from "./i18n";
 
 function Location() {
+
+  const lang = localStorage.getItem("lang") || "en";
+
   const navigate = useNavigate();
 
   const [district, setDistrict] = useState("");
@@ -16,7 +20,7 @@ function Location() {
 
   const handleContinue = () => {
     if (!district || !taluk || !locality) {
-      alert("Please select all fields");
+      alert(t("selectAllFields", lang));
       return;
     }
 
@@ -32,13 +36,15 @@ function Location() {
     <div className="location-page">
       <div className="location-card">
 
-        <h2>Select Your Location</h2>
+        <h2>{t("selectLocation", lang)}</h2>
+
         <p>
-          We use this to connect you with your local business community
+          {t("locationDesc", lang)}
         </p>
 
         {/* District */}
-        <label>District</label>
+        <label>{t("district", lang)}</label>
+
         <select
           value={district}
           onChange={(e) => {
@@ -47,16 +53,19 @@ function Location() {
             setLocality("");
           }}
         >
-          <option value="">Select District</option>
+          <option value="">{t("selectDistrict", lang)}</option>
+
           {Object.keys(locationData).map((dist) => (
             <option key={dist} value={dist}>
               {dist}
             </option>
           ))}
+
         </select>
 
         {/* Taluk */}
-        <label>Taluk</label>
+        <label>{t("taluk", lang)}</label>
+
         <select
           value={taluk}
           onChange={(e) => {
@@ -65,23 +74,27 @@ function Location() {
           }}
           disabled={!district}
         >
-          <option value="">Select Taluk</option>
+          <option value="">{t("selectTaluk", lang)}</option>
+
           {district &&
-            Object.keys(locationData[district]).map((t) => (
-              <option key={t} value={t}>
-                {t}
+            Object.keys(locationData[district]).map((talu) => (
+              <option key={talu} value={talu}>
+                {talu}
               </option>
             ))}
+
         </select>
 
         {/* Locality */}
-        <label>Locality</label>
+        <label>{t("locality", lang)}</label>
+
         <select
           value={locality}
           onChange={(e) => setLocality(e.target.value)}
           disabled={!taluk}
         >
-          <option value="">Select Locality</option>
+          <option value="">{t("selectLocality", lang)}</option>
+
           {district &&
             taluk &&
             locationData[district][taluk].map((loc) => (
@@ -89,16 +102,25 @@ function Location() {
                 {loc}
               </option>
             ))}
+
         </select>
 
         <div className="location-actions">
-          <button className="continue-btn" onClick={handleContinue}>
-            Continue
+
+          <button
+            className="continue-btn"
+            onClick={handleContinue}
+          >
+            {t("continue", lang)}
           </button>
 
-          <button className="skip-btn" onClick={goNext}>
-            Skip for now
+          <button
+            className="skip-btn"
+            onClick={goNext}
+          >
+            {t("skipNow", lang)}
           </button>
+
         </div>
 
       </div>
