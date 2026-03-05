@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
 import background from "./assets/background.jpeg";
@@ -6,23 +6,18 @@ import logo from "./assets/logo.png";
 
 function Home() {
   const navigate = useNavigate();
-
-  // load language from localStorage
-  const [language, setLanguage] = useState(
-    localStorage.getItem("lang") || "en"
-  );
-
-  // save language whenever it changes
-  useEffect(() => {
-    localStorage.setItem("lang", language);
-  }, [language]);
+  const [language, setLanguage] = useState("en");
 
   const translations = {
     en: {
       title: "Your Kannada Universe",
+      //subtitle: "Our Language, Our Emotion",
+      //tagline: "One platform for everything Kannada",
+     // emotion: "Connecting every Kannadiga across the world 🌍",
       choose: "Choose Language",
       signup: "Sign Up",
       login: "Login",
+      footer: "Official Karnataka Digital Business Platform",
       features: [
         {
           title: "News & Updates",
@@ -41,12 +36,15 @@ function Home() {
         }
       ]
     },
-
     kn: {
       title: "ನಿಮ್ಮ ಕನ್ನಡ ವಿಶ್ವ",
+      //subtitle: "ನಮ್ಮ ಭಾಷೆ, ನಮ್ಮ ಭಾವನೆ",
+      //tagline: "ಎಲ್ಲಾ ಕನ್ನಡಕ್ಕಾಗಿ ಒಂದೇ ವೇದಿಕೆ",
+      //emotion: "ಪ್ರಪಂಚದಾದ್ಯಂತ ಕನ್ನಡಿಗರನ್ನು ಸಂಪರ್ಕಿಸುತ್ತಿದೆ 🌍",
       choose: "ಭಾಷೆ ಆಯ್ಕೆಮಾಡಿ",
       signup: "ಸೈನ್ ಅಪ್",
       login: "ಲಾಗಿನ್",
+      footer: "ಕರ್ನಾಟಕ ಅಧಿಕೃತ ಡಿಜಿಟಲ್ ವ್ಯವಹಾರ ವೇದಿಕೆ",
       features: [
         {
           title: "ಸುದ್ದಿಗಳು",
@@ -82,7 +80,6 @@ function Home() {
           <button onClick={() => navigate("/signup")}>
             {t.signup}
           </button>
-
           <button onClick={() => navigate("/login")}>
             {t.login}
           </button>
@@ -93,15 +90,16 @@ function Home() {
       <section className="hero">
         <div className="left">
           <h1>{t.title}</h1>
+          <h3>{t.subtitle}</h3>
+          <p>{t.tagline}</p>
+          <p className="emotion-line">{t.emotion}</p>
         </div>
 
         <div className="language-box">
           <h2>{t.choose}</h2>
-
           <button onClick={() => setLanguage("kn")}>
             ಕನ್ನಡ
           </button>
-
           <button onClick={() => setLanguage("en")}>
             English
           </button>
@@ -110,25 +108,10 @@ function Home() {
 
       {/* FLOATING KANNADA WORDS */}
       <div className="floating-words">
-        <span>ಕನ್ನಡ</span>
-        <span>ಸಂಸ್ಕೃತಿ</span>
-        <span>ಪರಂಪರೆ</span>
-        <span>ಕರ್ನಾಟಕ</span>
-        <span>ಕನ್ನಡಿಗ</span>
-        <span>ಸಾಹಿತ್ಯ</span>
-        <span>ಕಲೆ</span>
-        <span>ಹೆಮ್ಮೆ</span>
-        <span>ವ್ಯವಹಾರ</span>
-        <span>ಉದ್ಯಮ</span>
-        <span>ಆರ್ಥಿಕತೆ</span>
-        <span>ಮಾರಾಟ</span>
-        <span>ಸೇವೆ</span>
-        <span>ಹೂಡಿಕೆ</span>
-        <span>ಉದ್ಯೋಗ</span>
-        <span>ಸ್ಟಾರ್ಟ್‌ಅಪ್</span>
+        <span>ಕನ್ನಡ</span> <span>ಸಂಸ್ಕೃತಿ</span> <span>ಪರಂಪರೆ</span> <span>ಕರ್ನಾಟಕ</span> <span>ಕನ್ನಡಿಗ</span> <span>ಸಾಹಿತ್ಯ</span> <span>ಕಲೆ</span> <span>ಹೆಮ್ಮೆ</span> <span>ಕನ್ನಡ</span> <span>ಸಂಸ್ಕೃತಿ</span> <span>ವ್ಯವಹಾರ</span> <span>ಉದ್ಯಮ</span> <span>ಆರ್ಥಿಕತೆ</span> <span>ಮಾರಾಟ</span> <span>ಸೇವೆ</span> <span>ಹೂಡಿಕೆ</span> <span>ಉದ್ಯೋಗ</span> <span>ಸ್ಟಾರ್ಟ್‌ಅಪ್</span>
       </div>
 
-      {/* FEATURE CARDS */}
+      {/* FEATURE CARDS WITH EXTERNAL LINKS */}
       <section className="features">
         {t.features.map((feature, index) => (
           <a
@@ -145,6 +128,8 @@ function Home() {
           </a>
         ))}
       </section>
+
+      {/* footer removed as requested */}
     </div>
   );
 }

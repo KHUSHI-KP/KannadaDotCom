@@ -4,29 +4,23 @@ import background from "./assets/back.jpeg";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { t } from "./i18n";
 
 function Signup() {
-
-  const lang = localStorage.getItem("lang") || "en";
-
   const [mobile, setMobile] = useState("");
   const [showOTP, setShowOTP] = useState(false);
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const navigate = useNavigate();
+
   const inputRefs = useRef([]);
 
   const handleSendOTP = () => {
     if (!/^[0-9]{10}$/.test(mobile)) {
-      alert(
-        lang === "kn"
-          ? "ಸರಿಯಾದ 10 ಅಂಕೆಯ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ"
-          : "Enter valid 10 digit mobile number"
-      );
+      alert("Enter valid 10 digit mobile number");
       return;
     }
 
     navigate("/otp", { state: { mobile } });
+
   };
 
   const handleOtpChange = (value, index) => {
@@ -53,15 +47,12 @@ function Signup() {
             <>
               {/* PHONE CARD */}
               <div className="signup-card">
-
-                <h2>{t("signupPhone", lang)}</h2>
-
+                <h2>SignUp with Phone</h2>
                 <p className="subtitle">
-                  {t("enterMobile", lang)}
+                  Enter your mobile number to continue
                 </p>
 
                 <div className="mobile-input">
-
                   <div className="country-box">
                     <span>🇮🇳</span>
                     <span>+91</span>
@@ -78,16 +69,10 @@ function Signup() {
                     maxLength="10"
                     placeholder="98367 43210"
                   />
-
                 </div>
-
-                <button
-                  className="primary-btn"
-                  onClick={handleSendOTP}
-                >
-                  {t("sendOtp", lang)}
+                <button className="primary-btn" onClick={handleSendOTP}>
+                  Send OTP
                 </button>
-
               </div>
 
               {/* OR DIVIDER */}
@@ -97,60 +82,52 @@ function Signup() {
 
               {/* SOCIAL CARD */}
               <div className="signup-card">
-
                 <h3 className="register-email">
-                  {t("registerEmail", lang)}
+                  Register with Email
                 </h3>
 
                 <button
-                  className="social-btn"
-                  onClick={() =>
-                    navigate("/social-otp", { state: { provider: "google" } })
-                  }
-                >
-                  <FcGoogle size={22} />
-                  {t("continueGoogle", lang)}
-                </button>
-
-                <button
-                  className="social-btn"
-                  onClick={() =>
-                    navigate("/social-otp", { state: { provider: "facebook" } })
-                  }
-                >
-                  <FaFacebookF size={18} color="#1877f2" />
-                  {t("continueFacebook", lang)}
-                </button>
-
-                <button
-                  className="social-btn"
-                  onClick={() =>
-                    navigate("/social-otp", { state: { provider: "instagram" } })
-                  }
-                >
-                  <FaInstagram size={18} color="#e4405f" />
-                  {t("continueInstagram", lang)}
-                </button>
-
+  className="social-btn"
+  onClick={() =>
+    navigate("/social-otp", { state: { provider: "google" } })
+  }
+>
+  <FcGoogle size={22} />
+  Continue with Google
+</button>
+<button
+  className="social-btn"
+  onClick={() =>
+    navigate("/social-otp", { state: { provider: "facebook" } })
+  }
+>
+  <FaFacebookF size={18} color="#1877f2" />
+  Continue with Facebook
+</button>
+               
+<button
+  className="social-btn"
+  onClick={() =>
+    navigate("/social-otp", { state: { provider: "instagram" } })
+  }
+>
+  <FaInstagram size={18} color="#e4405f" />
+  Continue with Instagram
+</button>
                 <p className="login-link">
-                  {t("alreadyHaveAccount", lang)}{" "}
-                  <span onClick={() => navigate("/login")}>
-                    {t("login", lang)}
+                  Already have an account?{' '}
+                  <span onClick={() => navigate('/login')}>
+                    Login
                   </span>
                 </p>
-
               </div>
             </>
           ) : (
-
             /* OTP SCREEN */
-
             <div className="signup-card otp-card">
-
-              <h2>{t("otpVerification", lang)}</h2>
-
+              <h2>OTP Verification</h2>
               <p className="subtitle">
-                {t("enterOtp", lang)} <b>+91 {mobile}</b>
+                Enter OTP received on <b>+91 {mobile}</b>
               </p>
 
               <div className="otp-container">
@@ -169,14 +146,12 @@ function Signup() {
               </div>
 
               <button className="primary-btn">
-                {t("resendOtp", lang)}
+                Resend OTP
               </button>
 
               <p className="login-link">
-                {t("havingTrouble", lang)}{" "}
-                <span>{t("getHelp", lang)}</span>
+                Having trouble? <span>Get Help</span>
               </p>
-
             </div>
           )}
 
