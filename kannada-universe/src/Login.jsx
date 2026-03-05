@@ -2,12 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import loginBg from "./assets/back.jpeg";
-import { t } from "./i18n";
 
 function Login() {
-
-  const lang = localStorage.getItem("lang") || "en";
-
   const navigate = useNavigate();
 
   const [countryCode, setCountryCode] = useState("+91");
@@ -19,28 +15,31 @@ function Login() {
     e.preventDefault();
 
     if (countryCode === "+91" && !/^[0-9]{10}$/.test(mobile)) {
-      setError(t("invalidMobile", lang));
+      setError("Indian mobile number must be exactly 10 digits");
       return;
     }
 
     if (password.trim() === "") {
-      setError(t("passwordRequired", lang));
+      setError("Password is required");
       return;
     }
 
     let storedUser = JSON.parse(localStorage.getItem("user"));
+  if (!storedUser) {
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        mobile: "7894561234",
+        password: "Demo@12*"
+      })
+    );
 
-    if (!storedUser) {
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          mobile: "7894561234",
-          password: "Demo@12*"
-        })
-      );
-
-      storedUser = JSON.parse(localStorage.getItem("user"));
-    }
+    storedUser = JSON.parse(localStorage.getItem("user"));
+  }
+    /*if (!storedUser) {
+      setError("No account found. Please Sign Up.");
+      return;
+    }*/
 
     if (
       storedUser.mobile === mobile &&
@@ -49,7 +48,7 @@ function Login() {
       setError("");
       navigate("/welcome");
     } else {
-      setError(t("incorrectLogin", lang));
+      setError("Mobile number or password is incorrect");
     }
   };
 
@@ -60,15 +59,13 @@ function Login() {
     >
       <div className="login-overlay">
         <div className="login-card">
-
-          <h2>{t("login", lang)}</h2>
+          <h2>Login</h2>
 
           {error && <p className="error">{error}</p>}
 
-          <label>{t("mobileLabel", lang)}</label>
+          <label>Mobile Number</label>
 
           <div className="mobile-input">
-
             <select
               className="country-select"
               value={countryCode}
@@ -86,9 +83,8 @@ function Login() {
               onChange={(e) =>
                 setMobile(e.target.value.replace(/\D/g, ""))
               }
-              placeholder={t("mobilePlaceholder", lang)}
+              placeholder="Enter mobile number"
             />
-
           </div>
 
           <label>Password*</label>
@@ -97,27 +93,24 @@ function Login() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder={t("passwordPlaceholder", lang)}
+            placeholder="Enter password"
           />
 
           <p className="forgot-text">
-            {t("forgotPassword", lang)}{" "}
+            Forgot Password?{" "}
             <span onClick={() => navigate("/forgot-password")}>
-              {t("clickHere", lang)}
+              Click Here !!
             </span>
           </p>
 
-          <button onClick={handleLogin}>
-            {t("explore", lang)}
-          </button>
+          <button onClick={handleLogin}>Explore</button>
 
           <p className="signup-text">
-            {t("signupPrompt", lang)}{" "}
+            Don't have an account?{" "}
             <span onClick={() => navigate("/signup")}>
-              {t("signupLink", lang)}
+              SignUp
             </span>
           </p>
-
         </div>
       </div>
     </div>
