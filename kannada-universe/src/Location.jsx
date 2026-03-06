@@ -7,7 +7,6 @@ import { t } from "./i18n";
 function Location() {
 
   const lang = localStorage.getItem("lang") || "en";
-
   const navigate = useNavigate();
 
   const [district, setDistrict] = useState("");
@@ -37,13 +36,7 @@ function Location() {
       <div className="location-card">
 
         <h2>{t("selectLocation", lang)}</h2>
-
-        <p>
-          {t("locationDesc", lang)}
-        </p>
-        <h2>Select Your Location</h2>
-        <p>We use this to connect you with your local business community</p>
-
+        <p>{t("locationDesc", lang)}</p>
 
         {/* District */}
         <label>{t("district", lang)}</label>
@@ -63,7 +56,6 @@ function Location() {
               {dist}
             </option>
           ))}
-
         </select>
 
         {/* Taluk */}
@@ -85,7 +77,6 @@ function Location() {
                 {talu}
               </option>
             ))}
-
         </select>
 
         {/* Locality */}
@@ -105,7 +96,6 @@ function Location() {
                 {loc}
               </option>
             ))}
-
         </select>
 
         <div className="location-actions">
@@ -125,6 +115,7 @@ function Location() {
           </button>
 
         </div>
+
       </div>
     </div>
   );
