@@ -41,6 +41,9 @@ function Location() {
         <p>
           {t("locationDesc", lang)}
         </p>
+        <h2>Select Your Location</h2>
+        <p>We use this to connect you with your local business community</p>
+
 
         {/* District */}
         <label>{t("district", lang)}</label>
@@ -122,7 +125,6 @@ function Location() {
           </button>
 
         </div>
-
       </div>
     </div>
   );
