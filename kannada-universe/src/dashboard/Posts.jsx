@@ -188,7 +188,7 @@ export default function Posts(){
               >
 
                 <img
-                  src={post.image || "/placeholder.jpg"}
+                  src={post.image}
                   className="w-full h-40 object-cover"
                 />
 

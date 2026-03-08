@@ -39,7 +39,7 @@ export default function FeedCard({post}){
 				</div>
 
 				<div className="w-36 h-28 flex-shrink-0 relative">
-					<img src="/placeholder.jpg" alt="" className="w-full h-full object-cover rounded-md" />
+					<img src="/images/saree.jpg" alt="" className="w-full h-full object-cover rounded-md" />
 					<div className="absolute left-2 bottom-2 bg-white/90 px-2 py-0.5 rounded-full text-xs text-gray-700 flex items-center gap-2">🔥 {post.likes ?? 0} • 💬 {post.comments ?? 0}</div>
 				</div>
 			</div>
