@@ -1,145 +1,212 @@
+/* ===== PAGE ===== */
+
 .goals-page {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #f4f5f7;
-  padding: 40px;
+min-height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 40px;
+position: relative;
+
+/* Spark background */
+background-image:
+linear-gradient(
+rgba(0,0,0,0.18),
+rgba(0,0,0,0.18)
+),
+url("./assets/spark.png");
+
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
 }
+
+/* ===== SOFT GLOW ===== */
+
+.goals-page::before {
+content: "";
+position: absolute;
+width: 520px;
+height: 520px;
+
+background: radial-gradient(circle, rgba(108,92,231,0.25), transparent 70%);
+
+filter: blur(90px);
+z-index: 0;
+}
+
+/* ===== CARD ===== */
 
 .goals-card {
-  width: 650px;
-  background: white;
-  padding: 45px 50px;
-  border-radius: 20px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
+width: 100%;
+max-width: 650px;
+
+background: rgba(255,255,255,0.94);
+backdrop-filter: blur(18px);
+
+padding: 50px 55px;
+
+border-radius: 26px;
+
+box-shadow:
+0 20px 60px rgba(0,0,0,0.18);
+
+position: relative;
+z-index: 1;
 }
 
+/* ===== HEADER ===== */
+
 .goals-header {
-  text-align: center;
-  margin-bottom: 30px;
+text-align: center;
+margin-bottom: 30px;
 }
 
 .goals-header h2 {
-  font-size: 28px;
-  font-weight: 600;
+font-size: 28px;
+font-weight: 700;
+color: #2b235a;
 }
 
 .goals-header p {
-  font-size: 15px;
-  color: #666;
-  margin-top: 6px;
+font-size: 15px;
+color: #666;
+margin-top: 6px;
 }
 
-/* ===== Scrollable Goals List ===== */
+/* ===== GOALS LIST ===== */
 
 .goals-list {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  max-height: 360px;     /* enables scroll */
-  overflow-y: auto;
-  padding-right: 6px;
+display: flex;
+flex-direction: column;
+gap: 18px;
+
+max-height: 360px;
+overflow-y: auto;
+
+padding-right: 6px;
 }
 
-/* Custom Scrollbar */
+/* ===== CUSTOM SCROLLBAR ===== */
+
 .goals-list::-webkit-scrollbar {
-  width: 6px;
+width: 6px;
 }
 
 .goals-list::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 6px;
+background: #ccc;
+border-radius: 6px;
 }
 
 .goals-list::-webkit-scrollbar-thumb:hover {
-  background: #aaa;
+background: #aaa;
 }
 
-/* ===== Goal Item ===== */
+/* ===== GOAL ITEM ===== */
 
 .goal-item {
-  display: flex;
-  gap: 15px;
-  align-items: flex-start;
-  padding: 18px;
-  border-radius: 14px;
-  background: #f8f8f8;
-  cursor: pointer;
-  transition: all 0.2s ease;
+display: flex;
+gap: 15px;
+align-items: flex-start;
+
+padding: 18px;
+
+border-radius: 14px;
+
+background: #f8f8f8;
+
+cursor: pointer;
+
+transition: all 0.2s ease;
 }
 
 .goal-item:hover {
-  background: #ececec;
+background: #ececec;
 }
 
 .goal-item.active {
-  background: #e8e6ff;
-  border: 1px solid #6c5ce7;
+background: #e8e6ff;
+border: 1px solid #6c5ce7;
 }
 
 .goal-item input {
-  margin-top: 5px;
-  width: 18px;
-  height: 18px;
-  accent-color: #6c5ce7;
+margin-top: 5px;
+width: 18px;
+height: 18px;
+accent-color: #6c5ce7;
 }
 
 .goal-item h4 {
-  margin: 0;
-  font-size: 17px;
-  font-weight: 600;
+margin: 0;
+font-size: 17px;
+font-weight: 600;
 }
 
 .goal-item span {
-  font-size: 14px;
-  color: #666;
+font-size: 14px;
+color: #666;
 }
 
-/* ===== Custom Goal Input ===== */
+/* ===== CUSTOM GOAL INPUT ===== */
 
 .custom-goal {
-  margin-top: 25px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #f3f4f6;
-  padding: 12px 15px;
-  border-radius: 12px;
+margin-top: 25px;
+
+display: flex;
+justify-content: space-between;
+align-items: center;
+
+background: #f3f4f6;
+
+padding: 12px 15px;
+
+border-radius: 12px;
 }
 
 .custom-goal input {
-  border: none;
-  background: transparent;
-  outline: none;
-  width: 100%;
-  font-size: 14px;
+border: none;
+background: transparent;
+outline: none;
+
+width: 100%;
+font-size: 14px;
 }
 
 .custom-goal span {
-  font-size: 13px;
-  color: #666;
+font-size: 13px;
+color: #666;
 }
 
-/* ===== Footer Button ===== */
+/* ===== FOOTER BUTTON ===== */
 
 .goals-footer {
-  margin-top: 30px;
-  display: flex;
-  justify-content: flex-end;
+margin-top: 30px;
+display: flex;
+justify-content: center;
 }
 
 .continue-btn {
-  background: linear-gradient(135deg, #6c5ce7, #8e44ad);
-  color: white;
-  border: none;
-  padding: 12px 28px;
-  border-radius: 25px;
-  font-size: 15px;
-  cursor: pointer;
-  transition: 0.2s ease;
+width: 100%;
+
+background: linear-gradient(135deg, #6c5ce7, #8e44ad);
+
+color: white;
+
+border: none;
+
+padding: 14px;
+
+border-radius: 30px;
+
+font-size: 16px;
+font-weight: 600;
+
+cursor: pointer;
+
+transition: 0.25s ease;
 }
 
 .continue-btn:hover {
-  transform: translateY(-2px);
+transform: translateY(-2px);
+box-shadow: 0 10px 25px rgba(108,92,231,0.4);
 }

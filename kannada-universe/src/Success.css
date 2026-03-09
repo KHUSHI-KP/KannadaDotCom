@@ -1,147 +1,239 @@
+/* ===== PAGE ===== */
+
 .success-wrapper {
-  min-height: 100vh;
-  background: #f4f5f7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
+min-height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 40px;
+position: relative;
+
+background-image:
+linear-gradient(rgba(0,0,0,0.18), rgba(0,0,0,0.18)),
+url("./assets/spark.png");
+
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
 }
+
+/* ===== SOFT GLOW ===== */
+
+.success-wrapper::before {
+content: "";
+position: absolute;
+
+width: 520px;
+height: 520px;
+
+background: radial-gradient(circle, rgba(108,92,231,0.25), transparent 70%);
+
+filter: blur(90px);
+
+z-index: 0;
+}
+
+/* ===== CARD ===== */
 
 .success-card {
-  width: 1000px;
-  background: white;
-  border-radius: 28px;
-  padding: 50px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
-  text-align: center;
+width: 100%;
+max-width: 1000px;
+
+background: rgba(255,255,255,0.94);
+backdrop-filter: blur(18px);
+
+border-radius: 28px;
+
+padding: 60px;
+
+box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+
+text-align: center;
+
+position: relative;
+z-index: 1;
 }
 
+/* ===== TITLE ===== */
+
 .success-card h2 {
-  font-size: 32px;
-  margin-bottom: 8px;
+font-size: 34px;
+font-weight: 700;
+color: #2b235a;
+margin-bottom: 10px;
 }
 
 .subtitle {
-  color: #666;
-  margin-bottom: 40px;
+color: #666;
+margin-bottom: 45px;
+font-size: 16px;
 }
 
-/* ===== Carousel ===== */
+/* ===== CAROUSEL ===== */
 
 .carousel {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 40px;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-bottom: 40px;
 }
 
 .viewport {
-  width: 810px; /* Perfect safe width */
-  overflow: hidden;
+width: 780px;
+overflow: hidden;
 }
 
 .slider {
-  display: flex;
-  gap: 15px;
-  transition: transform 0.4s ease;
+display: flex;
+gap: 20px;
+transition: transform 0.4s ease;
 }
+
+/* ===== FEATURE CARD ===== */
 
 .feature-box {
-  flex: 0 0 255px;
-  background: #f3f4f6;
-  padding: 25px;
-  border-radius: 18px;
-  text-align: center;
+flex: 0 0 250px;
+
+background: #f3f4f6;
+
+padding: 30px 25px;
+
+border-radius: 18px;
+
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
 }
+
+/* ===== ICON ===== */
 
 .feature-icon {
-  font-size: 38px;
-  margin-bottom: 15px;
-  color: #6c5ce7;
+font-size: 40px;
+color: #6c5ce7;
+margin-bottom: 15px;
 }
 
+/* ===== FEATURE TEXT ===== */
+
 .feature-box h4 {
-  margin-bottom: 10px;
+font-size: 18px;
+font-weight: 700;
+margin-bottom: 8px;
+color: #2b235a;
 }
 
 .feature-box p {
-  font-size: 14px;
-  color: #555;
+font-size: 14px;
+color: #666;
+max-width: 200px;
+line-height: 1.4;
 }
+
+/* ===== ARROWS ===== */
 
 .arrow {
-  font-size: 30px;
-  cursor: pointer;
-  color: #6c5ce7;
-  margin: 0 20px;
-  user-select: none;
+font-size: 30px;
+cursor: pointer;
+color: #6c5ce7;
+margin: 0 20px;
+user-select: none;
+transition: 0.2s ease;
 }
 
-/* ===== Wallet Section ===== */
+.arrow:hover {
+transform: scale(1.2);
+}
+
+/* ===== WALLET SECTION ===== */
 
 .wallet-box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #f3f4f6;
-  padding: 25px 35px;
-  border-radius: 18px;
-  margin: 40px auto;
-  width: 90%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+
+background: #f3f4f6;
+
+padding: 25px 35px;
+
+border-radius: 18px;
+
+margin: 40px auto;
+
+width: 90%;
 }
 
 .wallet-left {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  text-align: left;
+display: flex;
+align-items: center;
+gap: 20px;
+text-align: left;
 }
 
 .wallet-icon {
-  font-size: 42px;
-  color: #6c5ce7;
+font-size: 42px;
+color: #6c5ce7;
 }
 
 .wallet-box h3 {
-  margin-bottom: 6px;
-  font-size: 20px;
+margin-bottom: 6px;
+font-size: 20px;
+font-weight: 700;
 }
 
 .wallet-box p {
-  font-size: 14px;
-  color: #555;
+font-size: 14px;
+color: #666;
 }
 
+/* ===== FREE BADGE ===== */
+
 .free-badge {
-  background: #6c5ce7;
-  color: white;
-  padding: 8px 22px;
-  border-radius: 20px;
-  font-weight: 500;
-  border: none;
-  cursor: pointer;
-  transition: 0.2s ease;
+background: #6c5ce7;
+color: white;
+
+padding: 8px 22px;
+
+border-radius: 20px;
+
+font-weight: 600;
+
+border: none;
+
+cursor: pointer;
+
+transition: 0.2s ease;
 }
 
 .free-badge:hover {
-  background: #5a4bd1;
-  transform: translateY(-2px);
+background: #5a4bd1;
+transform: translateY(-2px);
 }
 
-/* ===== Button ===== */
+/* ===== EXPLORE BUTTON ===== */
 
 .explore-btn {
-  background: linear-gradient(135deg, #6c5ce7, #8e44ad);
-  color: white;
-  border: none;
-  padding: 14px 45px;
-  border-radius: 28px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 30px;
-  transition: 0.2s ease;
+background: linear-gradient(135deg, #6c5ce7, #8e44ad);
+
+color: white;
+
+border: none;
+
+padding: 14px 45px;
+
+border-radius: 28px;
+
+font-size: 16px;
+font-weight: 600;
+
+cursor: pointer;
+
+margin-top: 30px;
+
+transition: 0.2s ease;
 }
 
 .explore-btn:hover {
-  transform: translateY(-2px);
+transform: translateY(-2px);
+box-shadow: 0 10px 25px rgba(108,92,231,0.35);
 }
