@@ -24,27 +24,24 @@ function Login() {
       return;
     }
 
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-  if (!storedUser) {
-    localStorage.setItem(
-      "user",
-      JSON.stringify({
-        mobile: "7894561234",
-        password: "Demo@12*"
-      })
-    );
+    let storedUser = JSON.parse(localStorage.getItem("user"));
+    if (!storedUser) {
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          mobile: "7894561234",
+          password: "Demo@12*",
+        }),
+      );
 
-    storedUser = JSON.parse(localStorage.getItem("user"));
-  }
+      storedUser = JSON.parse(localStorage.getItem("user"));
+    }
     /*if (!storedUser) {
       setError("No account found. Please Sign Up.");
       return;
-    }*/7894561234
+    }*/ 7894561234;
 
-    if (
-      storedUser.mobile === mobile &&
-      storedUser.password === password
-    ) {
+    if (storedUser.mobile === mobile && storedUser.password === password) {
       setError("");
       navigate("/welcome");
     } else {
@@ -53,10 +50,7 @@ function Login() {
   };
 
   return (
-    <div
-      className="login-page"
-      style={{ backgroundImage: `url(${loginBg})` }}
-    >
+    <div className="login-page" style={{ backgroundImage: `url(${loginBg})` }}>
       <div className="login-overlay">
         <div className="login-card">
           <h2>Login</h2>
@@ -80,9 +74,7 @@ function Login() {
             <input
               type="tel"
               value={mobile}
-              onChange={(e) =>
-                setMobile(e.target.value.replace(/\D/g, ""))
-              }
+              onChange={(e) => setMobile(e.target.value.replace(/\D/g, ""))}
               placeholder="Enter mobile number"
             />
           </div>
@@ -107,9 +99,7 @@ function Login() {
 
           <p className="signup-text">
             Don't have an account?{" "}
-            <span onClick={() => navigate("/signup")}>
-              SignUp
-            </span>
+            <span onClick={() => navigate("/signup")}>SignUp</span>
           </p>
         </div>
       </div>
