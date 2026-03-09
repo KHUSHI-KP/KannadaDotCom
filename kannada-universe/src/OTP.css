@@ -103,3 +103,11 @@
 .resend-btn:hover {
   text-decoration: underline;
 }
+.email-input {
+  width: 100%;
+  padding: 12px;
+  margin: 20px 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}

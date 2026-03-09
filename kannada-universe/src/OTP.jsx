@@ -2,8 +2,12 @@ import { useState, useRef } from "react";
 import "./Otp.css";
 import background from "./assets/back.jpeg";
 import { useNavigate, useLocation } from "react-router-dom";
+import { t } from "./i18n";
 
 function Otp() {
+
+  const lang = localStorage.getItem("lang") || "en";
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -46,7 +50,7 @@ function Otp() {
     const enteredOtp = otp.join("");
 
     if (enteredOtp.length !== 6) {
-      alert("Enter 6 digit OTP");
+      alert(t("enter6DigitOtp", lang));
       return;
     }
 
@@ -58,7 +62,7 @@ function Otp() {
         }
       });
     } else {
-      alert("Invalid OTP");
+      alert(t("invalidOtp", lang));
     }
   };
 
@@ -69,10 +73,11 @@ function Otp() {
     >
       <div className="otp-overlay">
         <div className="otp-card">
-          <h2>OTP Verification</h2>
+
+          <h2>{t("otpVerification", lang)}</h2>
 
           <p className="otp-sub">
-            Enter OTP received on <strong>+91 {mobile}</strong>
+            {t("enterOtp", lang)} <strong>+91 {mobile}</strong>
           </p>
 
           <div className="otp-inputs">
@@ -90,15 +95,16 @@ function Otp() {
           </div>
 
           <button className="verify-btn" onClick={handleVerify}>
-            Verify OTP
+            {t("verifyOtp", lang)}
           </button>
 
           <button
             className="resend-btn"
-            onClick={() => alert("OTP Resent!")}
+            onClick={() => alert(t("otpResent", lang))}
           >
-            Resend OTP
+            {t("resendOtp", lang)}
           </button>
+
         </div>
       </div>
     </div>

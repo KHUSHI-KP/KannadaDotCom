@@ -4,23 +4,29 @@ import background from "./assets/back.jpeg";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { t } from "./i18n";
 
 function Signup() {
+
+  const lang = localStorage.getItem("lang") || "en";
+
   const [mobile, setMobile] = useState("");
   const [showOTP, setShowOTP] = useState(false);
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const navigate = useNavigate();
-
   const inputRefs = useRef([]);
 
   const handleSendOTP = () => {
     if (!/^[0-9]{10}$/.test(mobile)) {
-      alert("Enter valid 10 digit mobile number");
+      alert(
+        lang === "kn"
+          ? "ಸರಿಯಾದ 10 ಅಂಕೆಯ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ"
+          : "Enter valid 10 digit mobile number"
+      );
       return;
     }
 
     navigate("/otp", { state: { mobile } });
-
   };
 
   const handleOtpChange = (value, index) => {
@@ -47,12 +53,15 @@ function Signup() {
             <>
               {/* PHONE CARD */}
               <div className="signup-card">
-                <h2>SignUp with Phone</h2>
+
+                <h2>{t("signupPhone", lang)}</h2>
+
                 <p className="subtitle">
-                  Enter your mobile number to continue
+                  {t("enterMobile", lang)}
                 </p>
 
                 <div className="mobile-input">
+
                   <div className="country-box">
                     <span>🇮🇳</span>
                     <span>+91</span>
@@ -69,11 +78,16 @@ function Signup() {
                     maxLength="10"
                     placeholder="98367 43210"
                   />
+
                 </div>
 
-                <button className="primary-btn" onClick={handleSendOTP}>
-                  Send OTP
+                <button
+                  className="primary-btn"
+                  onClick={handleSendOTP}
+                >
+                  {t("sendOtp", lang)}
                 </button>
+
               </div>
 
               {/* OR DIVIDER */}
@@ -83,39 +97,60 @@ function Signup() {
 
               {/* SOCIAL CARD */}
               <div className="signup-card">
+
                 <h3 className="register-email">
-                  Register with Email
+                  {t("registerEmail", lang)}
                 </h3>
 
-                <button className="social-btn">
+                <button
+                  className="social-btn"
+                  onClick={() =>
+                    navigate("/social-otp", { state: { provider: "google" } })
+                  }
+                >
                   <FcGoogle size={22} />
-                  Continue with Google
+                  {t("continueGoogle", lang)}
                 </button>
 
-                <button className="social-btn">
+                <button
+                  className="social-btn"
+                  onClick={() =>
+                    navigate("/social-otp", { state: { provider: "facebook" } })
+                  }
+                >
                   <FaFacebookF size={18} color="#1877f2" />
-                  Continue with Facebook
+                  {t("continueFacebook", lang)}
                 </button>
 
-                <button className="social-btn">
+                <button
+                  className="social-btn"
+                  onClick={() =>
+                    navigate("/social-otp", { state: { provider: "instagram" } })
+                  }
+                >
                   <FaInstagram size={18} color="#e4405f" />
-                  Continue with Instagram
+                  {t("continueInstagram", lang)}
                 </button>
 
                 <p className="login-link">
-                  Already have an account?{" "}
+                  {t("alreadyHaveAccount", lang)}{" "}
                   <span onClick={() => navigate("/login")}>
-                    Login
+                    {t("login", lang)}
                   </span>
                 </p>
+
               </div>
             </>
           ) : (
+
             /* OTP SCREEN */
+
             <div className="signup-card otp-card">
-              <h2>OTP Verification</h2>
+
+              <h2>{t("otpVerification", lang)}</h2>
+
               <p className="subtitle">
-                Enter OTP received on <b>+91 {mobile}</b>
+                {t("enterOtp", lang)} <b>+91 {mobile}</b>
               </p>
 
               <div className="otp-container">
@@ -134,12 +169,14 @@ function Signup() {
               </div>
 
               <button className="primary-btn">
-                Resend OTP
+                {t("resendOtp", lang)}
               </button>
 
               <p className="login-link">
-                Having trouble? <span>Get Help</span>
+                {t("havingTrouble", lang)}{" "}
+                <span>{t("getHelp", lang)}</span>
               </p>
+
             </div>
           )}
 

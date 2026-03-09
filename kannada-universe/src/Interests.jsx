@@ -1,24 +1,29 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaSearch, FaCheck } from "react-icons/fa";
 import "./Interests.css";
-
-const interestsList = [
-  "Retail & Wholesale",
-  "Handicrafts & Artisans",
-  "E - Commerce",
-  "Manufacturing & MSMEs",
-  "Agriculture & Agri - Business",
-  "Digital Marketing",
-  "Social Media Content",
-  "Entrepreneurship",
-  "Professional Services",
-  "Software & IT - Services",
-  "Training",
-  "Event Management",
-  "Restaurants & Food Businesses"
-];
+import { t } from "./i18n";
 
 function Interests() {
+
+  const lang = localStorage.getItem("lang") || "en";
+
+  const interestsList = [
+    t("retailWholesale", lang),
+    t("handicrafts", lang),
+    t("ecommerce", lang),
+    t("manufacturing", lang),
+    t("agriculture", lang),
+    t("digitalMarketing", lang),
+    t("socialMedia", lang),
+    t("entrepreneurship", lang),
+    t("professionalServices", lang),
+    t("softwareIT", lang),
+    t("training", lang),
+    t("eventManagement", lang),
+    t("restaurants", lang)
+  ];
+
   const [selected, setSelected] = useState([]);
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
@@ -31,7 +36,7 @@ function Interests() {
     }
   };
 
-  const handleContinue = () => {
+  const goNext = () => {
     localStorage.setItem("interests", JSON.stringify(selected));
     navigate("/terms");
   };
@@ -42,18 +47,30 @@ function Interests() {
 
   return (
     <div className="interests-page">
+
       <div className="interests-card">
-        <h2>Select Your Interests</h2>
-        <p>Choose the sectors you're interested in. You can select multiple.</p>
 
-        <input
-          type="text"
-          placeholder="Search interests..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+        <h2>{t("selectInterests", lang)}</h2>
 
+        <p>{t("interestDesc", lang)}</p>
+
+        {/* Search */}
+        <div className="search-wrapper">
+
+          <FaSearch className="search-icon" />
+
+          <input
+            type="text"
+            placeholder={t("searchInterests", lang)}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+
+        </div>
+
+        {/* Interests Grid */}
         <div className="interests-grid">
+
           {filtered.map((item, index) => (
             <div
               key={index}
@@ -62,20 +79,26 @@ function Interests() {
               }`}
               onClick={() => toggleInterest(item)}
             >
+
+              <span className="circle">
+                {selected.includes(item) && <FaCheck size={10} />}
+              </span>
+
               {item}
+
             </div>
           ))}
+
         </div>
 
-        <div className="interest-actions">
-          <button className="skip-btn" onClick={() => navigate("/dashboard")}>
-            Skip for now
-          </button>
+        <button className="continue-btn" onClick={goNext}>
+          {t("continue", lang)}
+        </button>
 
-          <button className="continue-btn" onClick={handleContinue}>
-            Continue
-          </button>
-        </div>
+        <button className="skip-btn" onClick={goNext}>
+          {t("skipNow", lang)}
+        </button>
+
       </div>
     </div>
   );

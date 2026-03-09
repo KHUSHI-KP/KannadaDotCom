@@ -3,8 +3,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./CreatePassword.css";
 import background from "./assets/back.jpeg";
+import { t } from "./i18n";
 
 function CreatePassword() {
+
+  const lang = localStorage.getItem("lang") || "en";
+
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -20,28 +24,22 @@ function CreatePassword() {
   const handleSubmit = () => {
     setError("");
 
-    // 🔹 Length check
     if (password.length < 8) {
-      setError("Password must be at least 8 characters long.");
+      setError(t("passwordTooShort", lang));
       return;
     }
 
-    // 🔹 Special character check
     const specialMatches = password.match(/[@$*&]/g);
     if (!specialMatches || specialMatches.length < 2) {
-      setError(
-        "Password must contain at least 2 special characters (@, $, *, &)."
-      );
+      setError(t("passwordSpecial", lang));
       return;
     }
 
-    // 🔹 Match check
     if (password !== confirmPassword) {
-      setError("Passwords do not match.");
+      setError(t("passwordMismatch", lang));
       return;
     }
 
-    // 🔥 Save user in localStorage
     localStorage.setItem(
       "user",
       JSON.stringify({
@@ -50,11 +48,10 @@ function CreatePassword() {
       })
     );
 
-    // 🔹 Success message
     if (fromForgot) {
-      alert("Password changed successfully!");
+      alert(t("passwordChanged", lang));
     } else {
-      alert("Account created successfully!");
+      alert(t("accountCreated", lang));
     }
 
     navigate("/login");
@@ -68,22 +65,22 @@ function CreatePassword() {
       <div className="create-overlay">
         <div className="create-card">
 
-          <h2>Create New Password</h2>
-          <p>For +91 {mobile}</p>
+          <h2>{t("createPassword", lang)}</h2>
+          <p>{t("forMobile", lang)} +91 {mobile}</p>
 
           <p className="password-rule-top">
-            Password must be at least 8 characters and contain
-            at least 2 special characters (@, $, *, &)
+            {t("passwordRule", lang)}
           </p>
 
           {/* Password Field */}
           <div className="password-wrapper">
             <input
               type={showPassword ? "text" : "password"}
-              placeholder="Enter new password"
+              placeholder={t("enterNewPassword", lang)}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+
             <span
               className="eye-icon"
               onClick={() => setShowPassword(!showPassword)}
@@ -96,10 +93,11 @@ function CreatePassword() {
           <div className="password-wrapper">
             <input
               type={showConfirm ? "text" : "password"}
-              placeholder="Confirm password"
+              placeholder={t("confirmPassword", lang)}
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
+
             <span
               className="eye-icon"
               onClick={() => setShowConfirm(!showConfirm)}
@@ -111,7 +109,7 @@ function CreatePassword() {
           {error && <p className="error-msg">{error}</p>}
 
           <button onClick={handleSubmit}>
-            Save Password
+            {t("savePassword", lang)}
           </button>
 
         </div>
