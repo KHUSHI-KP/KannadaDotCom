@@ -5,9 +5,7 @@ import loginBg from "./assets/back.jpeg";
 import { t } from "./i18n";
 
 function Login() {
-
   const lang = localStorage.getItem("lang") || "en";
-
   const navigate = useNavigate();
 
   const [countryCode, setCountryCode] = useState("+91");
@@ -29,36 +27,18 @@ function Login() {
     }
 
     let storedUser = JSON.parse(localStorage.getItem("user"));
-<<<<<<< HEAD
+
     if (!storedUser) {
       localStorage.setItem(
         "user",
         JSON.stringify({
           mobile: "7894561234",
           password: "Demo@12*",
-        }),
-      );
-
-      storedUser = JSON.parse(localStorage.getItem("user"));
-    }
-    /*if (!storedUser) {
-      setError("No account found. Please Sign Up.");
-      return;
-    }*/ 7894561234;
-=======
-
-    if (!storedUser) {
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          mobile: "7894561234",
-          password: "Demo@12*"
         })
       );
 
       storedUser = JSON.parse(localStorage.getItem("user"));
     }
->>>>>>> 58b97abb330a1d1a1f2c48a2f4e4fc18f3977aff
 
     if (storedUser.mobile === mobile && storedUser.password === password) {
       setError("");
@@ -80,7 +60,6 @@ function Login() {
           <label>{t("mobileLabel", lang)}</label>
 
           <div className="mobile-input">
-
             <select
               className="country-select"
               value={countryCode}
@@ -95,17 +74,11 @@ function Login() {
             <input
               type="tel"
               value={mobile}
-<<<<<<< HEAD
-              onChange={(e) => setMobile(e.target.value.replace(/\D/g, ""))}
-              placeholder="Enter mobile number"
-=======
               onChange={(e) =>
                 setMobile(e.target.value.replace(/\D/g, ""))
               }
               placeholder={t("mobilePlaceholder", lang)}
->>>>>>> 58b97abb330a1d1a1f2c48a2f4e4fc18f3977aff
             />
-
           </div>
 
           <label>Password*</label>
@@ -129,15 +102,10 @@ function Login() {
           </button>
 
           <p className="signup-text">
-<<<<<<< HEAD
-            Don't have an account?{" "}
-            <span onClick={() => navigate("/signup")}>SignUp</span>
-=======
             {t("signupPrompt", lang)}{" "}
             <span onClick={() => navigate("/signup")}>
               {t("signupLink", lang)}
             </span>
->>>>>>> 58b97abb330a1d1a1f2c48a2f4e4fc18f3977aff
           </p>
 
         </div>
