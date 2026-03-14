@@ -1,29 +1,22 @@
-# KannadaDotCom Database
-
-Database Type: MongoDB
+# KannadaDotCom MongoDB Schema
 
 Collection: users
 
 Fields:
 
-- name : String
-- email : String
-- password : String
+- name
+- phone
+- password
+- role
+- createdAt
 
 Collection: posts
 
 Fields:
 
-- id : String
-- business.en : String
-- business.kn : String
-- location.en : String
-- location.kn : String
-- content.en : String
-- content.kn : String
-- tags : Array
-- likes : Number
-- comments : Number
-- saves : Number
-- image : String
-- createdAt : Number
+- business
+- location
+- content
+- likes
+- comments
+- createdAt
