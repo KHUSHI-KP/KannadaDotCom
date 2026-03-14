@@ -36,3 +36,36 @@ Fields:
 
 - image (String)
 - createdAt (Number)
+
+Collection: comments
+
+Fields:
+
+- postId (String)
+- userId (String)
+- comment (String)
+- createdAt (Number)
+
+Collection: likes
+
+Fields:
+
+- postId (String)
+- userId (String)
+- createdAt (Number)
+
+Collection: saves
+
+Fields:
+
+- postId (String)
+- userId (String)
+- createdAt (Number)
+
+Collection: otp_verification
+
+Fields:
+
+- phone (String)
+- otp (String)
+- createdAt (Number)
