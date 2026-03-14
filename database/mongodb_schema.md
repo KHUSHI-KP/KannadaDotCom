@@ -4,19 +4,35 @@ Collection: users
 
 Fields:
 
-- name
-- phone
-- password
-- role
-- createdAt
+- name (String)
+- email (String)
+- password (String)
 
 Collection: posts
 
 Fields:
 
+- id (String)
+
 - business
+  - en (String)
+  - kn (String)
+
 - location
+  - en (String)
+  - kn (String)
+
 - content
-- likes
-- comments
-- createdAt
+  - en (String)
+  - kn (String)
+
+- tags (Array)
+  - en (String)
+  - kn (String)
+
+- likes (Number)
+- comments (Number)
+- saves (Number)
+
+- image (String)
+- createdAt (Number)
