@@ -45,7 +45,19 @@ The project previously included a small mock server that exposed these endpoints
   "saves": 65,
   "image": "/images/saree.jpg",
   "createdAt": 1670000000000
-}
+},
+/*{
+"id":"p2",
+"business":{"en":"Coffee Roasters","kn":"ಕಾಫಿ ರೋಸ್ಟರ್ಸ್"},
+"location":{"en":"Jayanagar, Bengaluru","kn":"ಜಯನಗರ, ಬೆಂಗಳೂರು"},
+"content":{"en":"Celebrating our 1000th customer!!!!","kn":"ನಮ್ಮ 1000ನೇ ಗ್ರಾಹಕನ ಸಂಭ್ರಮ"},
+"tags":[{"en":"SmallBusiness","kn":"ಸಣ್ಣ ವ್ಯಾಪಾರ"}],
+"likes":250,
+"comments":50,
+"saves":100,
+"image":"/images/coffee.jpg",
+"createdAt":16800000000
+},*/
 ```
 
 - `GET /api/business` -> returns JSON with `data` containing an array of business objects. Example:
@@ -60,13 +72,13 @@ The project previously included a small mock server that exposed these endpoints
 }
 ```
 
-
 ### Notes for local development
 
 - If you want to run your own local mock server, restore or recreate a simple Express/HTTP server that responds to the endpoints above and set `VITE_API_BASE` accordingly (for example, `http://localhost:4000`).
 - The frontend's `src/api.js` uses axios and will default to `http://localhost:4000` when `VITE_API_BASE` is not provided.
 
 If you want, I can recreate a new (clean) mock server file or re-add the previous `backend/server.js` with improved diagnostics — say the word and I will add it back.
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
