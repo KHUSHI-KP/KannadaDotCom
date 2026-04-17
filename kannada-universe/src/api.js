@@ -1,3 +1,5 @@
+import KannadaGreeting from "./components/KannadaGreeting";
+import ThemeSwitcher from "./components/ThemeSwitcher";
 import axios from "axios";
 
 // Use Vite env variables (import.meta.env) in browser. Falls back to localhost mock server.
