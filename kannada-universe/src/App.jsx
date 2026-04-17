@@ -1,5 +1,4 @@
-import KannadaGreeting from "./components/KannadaGreeting";
-import ThemeSwitcher from "./components/ThemeSwitcher";
+
 import { Routes, Route } from "react-router-dom";
 
 /* Auth + onboarding pages */
