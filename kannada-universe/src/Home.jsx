@@ -1,5 +1,4 @@
-import KannadaGreeting from "../components/KannadaGreeting";
-import ThemeSwitcher from "../components/ThemeSwitcher";
+
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
@@ -111,8 +110,8 @@ function Home() {
       </section>
 
       <div style={{ margin: "20px 0" }}>
-  <KannadaGreeting />
-  <ThemeSwitcher />
+  
+  
 </div>
 
       {/* FLOATING KANNADA WORDS */}
