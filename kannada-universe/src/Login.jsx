@@ -9,15 +9,18 @@ function Login() {
   const navigate = useNavigate();
 
   const [countryCode, setCountryCode] = useState("+91");
-  const [mobile, setMobile] = useState("");
+  const [identifier, setIdentifier] = useState(""); // phone OR email
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const handleLogin = (e) => {
     e.preventDefault();
 
-    if (countryCode === "+91" && !/^[0-9]{10}$/.test(mobile)) {
-      setError(t("invalidMobile", lang));
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(identifier);
+    const isPhone = /^[0-9]{10}$/.test(identifier);
+
+    if (!isEmail && !isPhone) {
+      setError("Enter valid mobile number or email");
       return;
     }
 
@@ -28,11 +31,13 @@ function Login() {
 
     let storedUser = JSON.parse(localStorage.getItem("user"));
 
+    // Dummy user if none exists
     if (!storedUser) {
       localStorage.setItem(
         "user",
         JSON.stringify({
           mobile: "7894561234",
+          email: "demo@gmail.com",
           password: "Demo@12*",
         })
       );
@@ -40,7 +45,11 @@ function Login() {
       storedUser = JSON.parse(localStorage.getItem("user"));
     }
 
-    if (storedUser.mobile === mobile && storedUser.password === password) {
+    if (
+      (storedUser.mobile === identifier ||
+        storedUser.email === identifier) &&
+      storedUser.password === password
+    ) {
       setError("");
       navigate("/welcome");
     } else {
@@ -49,35 +58,38 @@ function Login() {
   };
 
   return (
-    <div className="login-page" style={{ backgroundImage: `url(${loginBg})` }}>
+    <div
+      className="login-page"
+      style={{ backgroundImage: `url(${loginBg})` }}
+    >
       <div className="login-overlay">
         <div className="login-card">
-
           <h2>{t("login", lang)}</h2>
 
           {error && <p className="error">{error}</p>}
 
-          <label>{t("mobileLabel", lang)}</label>
+          <label>Mobile Number / Email</label>
 
           <div className="mobile-input">
-            <select
-              className="country-select"
-              value={countryCode}
-              onChange={(e) => setCountryCode(e.target.value)}
-            >
-              <option value="+91">🇮🇳 +91</option>
-              <option value="+1">🇺🇸 +1</option>
-              <option value="+44">🇬🇧 +44</option>
-              <option value="+971">🇦🇪 +971</option>
-            </select>
+            {/* Hide country code if email */}
+            {!identifier.includes("@") && (
+              <select
+                className="country-select"
+                value={countryCode}
+                onChange={(e) => setCountryCode(e.target.value)}
+              >
+                <option value="+91">🇮🇳 +91</option>
+                <option value="+1">🇺🇸 +1</option>
+                <option value="+44">🇬🇧 +44</option>
+                <option value="+971">🇦🇪 +971</option>
+              </select>
+            )}
 
             <input
-              type="tel"
-              value={mobile}
-              onChange={(e) =>
-                setMobile(e.target.value.replace(/\D/g, ""))
-              }
-              placeholder={t("mobilePlaceholder", lang)}
+              type={identifier.includes("@") ? "email" : "tel"}
+              value={identifier}
+              onChange={(e) => setIdentifier(e.target.value)}
+              placeholder="Enter mobile number or email"
             />
           </div>
 
@@ -107,7 +119,6 @@ function Login() {
               {t("signupLink", lang)}
             </span>
           </p>
-
         </div>
       </div>
     </div>
