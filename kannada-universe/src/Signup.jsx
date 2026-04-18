@@ -4,6 +4,7 @@ import background from "./assets/back.jpeg";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import API from "./api";
 import { t } from "./i18n";
 
 function Signup() {
@@ -16,7 +17,7 @@ function Signup() {
   const navigate = useNavigate();
   const inputRefs = useRef([]);
 
-  const handleSendOTP = () => {
+  const handleSendOTP = async () => {
     if (!/^[0-9]{10}$/.test(mobile)) {
       alert(
         lang === "kn"
@@ -26,7 +27,28 @@ function Signup() {
       return;
     }
 
-    navigate("/otp", { state: { mobile } });
+    try {
+      await API.post("/api/auth/pre-signup", { mobile });
+      navigate("/otp", { state: { mobile } });
+    } catch (err) {
+      const status = err.response?.status;
+      const apiMessage = err.response?.data?.message;
+
+      let message;
+      if (status === 400 && apiMessage) {
+        message = apiMessage;
+      } else if (status === 404) {
+        message = lang === "kn"
+          ? "ಸೈನ್-ಅಪ್ ಸೇವೆ ಲಭ್ಯವಿಲ್ಲ. ಸರ್ವರ್ ಮತ್ತೆ ಪ್ರಾರಂಭಿಸಿ."
+          : "Signup service is unavailable. Restart backend server.";
+      } else {
+        message = apiMessage || (lang === "kn"
+          ? "ಸರ್ವರ್ ಸಂಪರ್ಕದಲ್ಲಿ ಸಮಸ್ಯೆ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
+          : "Unable to connect to server. Please try again.");
+      }
+
+      alert(message);
+    }
   };
 
   const handleOtpChange = (value, index) => {

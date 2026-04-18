@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import loginBg from "./assets/back.jpeg";
+import API from "./api";
 import { t } from "./i18n";
 
 function Login() {
@@ -13,7 +14,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(identifier);
@@ -29,30 +30,17 @@ function Login() {
       return;
     }
 
-    let storedUser = JSON.parse(localStorage.getItem("user"));
+    try {
+      const { data } = await API.post("/api/auth/login", {
+        identifier,
+        password,
+      });
 
-    // Dummy user if none exists
-    if (!storedUser) {
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          mobile: "7894561234",
-          email: "demo@gmail.com",
-          password: "Demo@12*",
-        })
-      );
-
-      storedUser = JSON.parse(localStorage.getItem("user"));
-    }
-
-    if (
-      (storedUser.mobile === identifier ||
-        storedUser.email === identifier) &&
-      storedUser.password === password
-    ) {
+      localStorage.setItem("authToken", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
       setError("");
       navigate("/welcome");
-    } else {
+    } catch (err) {
       setError(t("incorrectLogin", lang));
     }
   };
