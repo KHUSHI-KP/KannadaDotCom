@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./CreatePassword.css";
 import background from "./assets/back.jpeg";
+import API from "./api";
 import { t } from "./i18n";
 
 function CreatePassword() {
@@ -21,7 +22,7 @@ function CreatePassword() {
   const [showConfirm, setShowConfirm] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setError("");
 
     if (password.length < 8) {
@@ -40,21 +41,34 @@ function CreatePassword() {
       return;
     }
 
-    localStorage.setItem(
-      "user",
-      JSON.stringify({
-        mobile,
-        password
-      })
-    );
-
-    if (fromForgot) {
-      alert(t("passwordChanged", lang));
-    } else {
-      alert(t("accountCreated", lang));
+    if (!/^[0-9]{10}$/.test(mobile)) {
+      setError(t("invalidMobile", lang));
+      return;
     }
 
-    navigate("/login");
+    try {
+      if (fromForgot) {
+        await API.post("/api/auth/reset-password", {
+          mobile,
+          password,
+        });
+        alert(t("passwordChanged", lang));
+      } else {
+        await API.post("/api/auth/signup", {
+          mobile,
+          password,
+        });
+        alert(t("accountCreated", lang));
+      }
+
+      navigate("/login");
+    } catch (err) {
+      setError(
+        err.response?.data?.message ||
+        err.response?.data?.error ||
+        "Something went wrong"
+      );
+    }
   };
 
   return (
