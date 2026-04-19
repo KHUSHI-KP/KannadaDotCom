@@ -5,8 +5,8 @@ import { Outlet, useLocation } from "react-router-dom";
 export default function Dashboard() {
   const location = useLocation();
 
-  // hide sidebar on creator studio page
-  const hideSidebar = location.pathname === "/create";
+  // hide sidebar on creator studio page and inbox
+  const hideSidebar = location.pathname === "/create" || location.pathname === "/dashboard/inbox";
 
   return (
     <div className="min-h-screen w-full bg-[#e0c29a]">

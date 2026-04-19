@@ -29,7 +29,7 @@ import Posts from "./dashboard/Posts";
 import CreatePage from "./dashboard/CreatePage";
 import Portfolio from "./dashboard/Portfolio";
 import Learn from "./dashboard/Learn";
-
+import Automation from "./dashboard/automation";
 function App() {
   return (
     <Routes>
@@ -68,7 +68,8 @@ function App() {
         {/* <Route path="leads" element={<Leads />} /> */}
         <Route path="hashtags" element={<Hashtags />} />
         <Route path="posts" element={<Posts />} />
-        {/* <Route path="analytics" element={<Analytics />} /> */}
+        
+         <Route path="automation" element={<Automation />} /> 
       </Route>
 
     </Routes>
