@@ -1,6 +1,28 @@
 import React, { useState } from 'react';
 import './ChatDetail.css';
 import { IoArrowBack } from 'react-icons/io5';
+import { FaRegUserCircle } from 'react-icons/fa';
+
+function MessageAvatar({ src, alt, className }) {
+  const [hasError, setHasError] = useState(!src);
+
+  if (hasError) {
+    return (
+      <div className={`${className} message-avatar-fallback`} aria-label={alt}>
+        <FaRegUserCircle />
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className={className}
+      onError={() => setHasError(true)}
+    />
+  );
+}
 
 const ChatDetail = ({ chat, onClose, onSendMessage }) => {
   const [replyText, setReplyText] = useState('');
@@ -10,12 +32,12 @@ const ChatDetail = ({ chat, onClose, onSendMessage }) => {
   const smartSuggestions = [
     'Yes, i can get you the quote for the saree.',
     'How many sarees would you like to order?',
-    'Our prices start from ₹ 2,500 per saree'
+    'Our prices start from ₹ 2,500 per saree',
   ];
 
   const quickReplies = [
-    { id: 1, text: 'Sure, I\'ll get on it !' },
-    { id: 2, text: 'Can you share some details?' }
+    { id: 1, text: "Sure, I'll get on it !" },
+    { id: 2, text: 'Can you share some details?' },
   ];
 
   const handleSendMessage = () => {
@@ -35,7 +57,7 @@ const ChatDetail = ({ chat, onClose, onSendMessage }) => {
     setReplyText(reply.text);
   };
 
-  const handleKeyPress = (e) => {
+  const handleKeyDown = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSendMessage();
@@ -46,7 +68,6 @@ const ChatDetail = ({ chat, onClose, onSendMessage }) => {
 
   return (
     <div className="chat-detail-container">
-      {/* Header */}
       <div className="chat-header">
         <button className="chat-back-btn" onClick={onClose}>
           <IoArrowBack />
@@ -61,23 +82,36 @@ const ChatDetail = ({ chat, onClose, onSendMessage }) => {
       </div>
 
       <div className="chat-content-wrapper">
-        {/* Messages Area */}
         <div className="chat-messages-area">
           <div className="messages-list">
             {chat.conversationMessages && chat.conversationMessages.length > 0 ? (
               chat.conversationMessages.map((msg) => (
                 <div
                   key={msg.id}
-                  className={`message-wrapper ${msg.isUser ? 'user-message' : 'bot-message'}`}
+                  className={`message-wrapper ${
+                    msg.isUser ? 'user-message' : 'bot-message'
+                  }`}
                 >
                   {msg.isUser && (
-                    <img src={msg.avatar} alt={msg.sender} className="message-avatar" />
+                    <MessageAvatar
+                      src={msg.avatar}
+                      alt={msg.sender}
+                      className="message-avatar"
+                    />
                   )}
-                  <div className={`message-bubble ${msg.isUser ? 'user-bubble' : 'bot-bubble'}`}>
+                  <div
+                    className={`message-bubble ${
+                      msg.isUser ? 'user-bubble' : 'bot-bubble'
+                    }`}
+                  >
                     {msg.message}
                   </div>
                   {!msg.isUser && (
-                    <img src={msg.avatar} alt={msg.sender} className="message-avatar" />
+                    <MessageAvatar
+                      src={msg.avatar}
+                      alt={msg.sender}
+                      className="message-avatar"
+                    />
                   )}
                 </div>
               ))
@@ -86,14 +120,15 @@ const ChatDetail = ({ chat, onClose, onSendMessage }) => {
             )}
           </div>
 
-          {/* Smart Reply Suggestions */}
           <div className="smart-suggestions-section">
             <h3 className="smart-suggestions-title">Smart reply suggestion</h3>
             <div className="suggestions-list">
               {smartSuggestions.map((suggestion, index) => (
                 <button
                   key={index}
-                  className={`suggestion-btn ${selectedSuggestion === suggestion ? 'active' : ''}`}
+                  className={`suggestion-btn ${
+                    selectedSuggestion === suggestion ? 'active' : ''
+                  }`}
                   onClick={() => handleSelectSuggestion(suggestion)}
                 >
                   {suggestion}
@@ -103,7 +138,6 @@ const ChatDetail = ({ chat, onClose, onSendMessage }) => {
             </div>
           </div>
 
-          {/* Auto-Reply Section */}
           <div className="auto-reply-section">
             <div className="auto-reply-header">
               <h3 className="auto-reply-title">Auto-Reply</h3>
@@ -133,14 +167,13 @@ const ChatDetail = ({ chat, onClose, onSendMessage }) => {
           </div>
         </div>
 
-        {/* Reply Input Area */}
         <div className="reply-input-section">
           <textarea
             className="reply-textarea"
             placeholder="Write a reply..."
             value={replyText}
             onChange={(e) => setReplyText(e.target.value)}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyDown}
             rows="3"
           />
           <button className="send-btn" onClick={handleSendMessage}>

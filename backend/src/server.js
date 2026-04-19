@@ -8,7 +8,7 @@ import protect from "./middleware/authMiddleware.js";
 
 dotenv.config();
 
-const app = express();
+const app  = express();
 
 // Connect to database
 connectDB();

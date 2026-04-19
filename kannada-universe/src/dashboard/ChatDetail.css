@@ -141,6 +141,16 @@
   flex-shrink: 0;
 }
 
+.message-avatar-fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f6efe8 0%, #ead9c7 100%);
+  color: #7c3aed;
+  font-size: 1.1rem;
+  border: 1px solid rgba(124, 58, 237, 0.12);
+}
+
 .message-bubble {
   max-width: 70%;
   padding: 0.75rem 1rem;

@@ -303,7 +303,17 @@
   transition: all 0.3s ease;
 }
 
-.message-item-full:hover .avatar-full {
+.avatar-fallback-full {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f6efe8 0%, #ead9c7 100%);
+  color: #7c3aed;
+  font-size: 1.6rem;
+}
+
+.message-item-full:hover .avatar-full,
+.message-item-full:hover .avatar-fallback-full {
   border-color: #7c3aed;
   transform: scale(1.05);
 }
@@ -642,6 +652,10 @@
     height: 36px;
   }
 
+  .avatar-fallback-full {
+    font-size: 1.2rem;
+  }
+
   .message-text-full {
     font-size: 0.85rem;
   }
@@ -697,6 +711,10 @@
     height: 32px;
   }
 
+  .avatar-fallback-full {
+    font-size: 1rem;
+  }
+
   .message-header-full {
     flex-direction: column;
     align-items: flex-start;
@@ -727,102 +745,5 @@
 
   .verify-icon-full {
     font-size: 1.25rem;
-  }
-}
-
-/* Light/Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .inbox-full-container {
-    background: linear-gradient(135deg, #2a2530 0%, #332d3f 100%);
-  }
-
-  .inbox-header-full {
-    background: linear-gradient(135deg, #2a2530 0%, #332d3f 100%);
-  }
-
-  .inbox-title {
-    color: #e0d5f0;
-  }
-
-  .message-item-full {
-    background: #3a3444;
-  }
-
-  .message-item-full:hover {
-    background: #444055;
-  }
-
-  .sender-name-full,
-  .message-text-full {
-    color: #e0e0e0;
-  }
-
-  .message-time-full {
-    color: #999;
-  }
-
-  .sidebar-full {
-    background: linear-gradient(180deg, #3a3444 0%, #332d3f 100%);
-  }
-
-  .sidebar-tab-full {
-    color: #d0d0d0;
-  }
-
-  .sidebar-tab-full:hover {
-    background: rgba(124, 58, 237, 0.2);
-    color: #b8a0d9;
-  }
-
-  .tabs-navigation-full {
-    background: #3a3444;
-  }
-
-  .tab-btn-full {
-    background: #444055;
-    border-color: #555070;
-    color: #d0d0d0;
-  }
-
-  .tab-btn-full:hover {
-    background: #555070;
-  }
-
-  .filters-section-full {
-    background: #3a3444;
-  }
-
-  .filter-select-full {
-    background: #444055;
-    border-color: #555070;
-    color: #d0d0d0;
-  }
-
-  .right-sidebar-full {
-    background: linear-gradient(180deg, #3a3444 0%, #332d3f 100%);
-  }
-
-  .platform-item-full {
-    background: #444055;
-  }
-
-  .platform-name-full {
-    color: #d0d0d0;
-  }
-}
-
-/* Print styles */
-@media print {
-  .inbox-full-container {
-    height: auto;
-  }
-
-  .message-item-full {
-    page-break-inside: avoid;
-  }
-
-  .sidebar-full,
-  .right-sidebar-full {
-    display: none;
   }
 }

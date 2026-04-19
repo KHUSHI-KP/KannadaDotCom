@@ -7,6 +7,7 @@ import Login from "./Login";
 import ForgotPassword from "./ForgotPassword";
 import Signup from "./Signup";
 import OTP from "./OTP";
+
 import CreatePassword from "./CreatePassword";
 import Welcome from "./Welcome";
 import Location from "./Location";
@@ -18,6 +19,7 @@ import Success from "./Success";
 import SocialOtp from "./SocialOtp";
 
 /* Dashboard pages */
+import MainLayout from "./MainLayout";
 import Dashboard from "./dashboard/Dashboard";
 import HomeFeed from "./dashboard/HomeFeed";
 import Explore from "./dashboard/Explore";
@@ -45,14 +47,16 @@ function App() {
 
       {/* ===== ONBOARDING FLOW ===== */}
 
-      <Route path="/welcome" element={<Welcome />} />
-      <Route path="/location" element={<Location />} />
-      <Route path="/interests" element={<Interests />} />
-      <Route path="/terms" element={<Terms />} />
-      <Route path="/social" element={<Social />} />
-      <Route path="/goals" element={<Goals />} />
-      <Route path="/success" element={<Success />} />
-      <Route path="/social-otp" element={<SocialOtp />} />
+       <Route element={<MainLayout />}>
+        <Route path="/welcome" element={<Welcome />} />
+        <Route path="/location" element={<Location />} />
+        <Route path="/interests" element={<Interests />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/social" element={<Social />} />
+        <Route path="/goals" element={<Goals />} />
+        <Route path="/success" element={<Success />} />
+        <Route path="/social-otp" element={<SocialOtp />} />
+      </Route>
 
       {/* ===== DASHBOARD ROUTES ===== */}
 

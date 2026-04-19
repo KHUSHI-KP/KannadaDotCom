@@ -2,8 +2,30 @@ import React, { useState } from 'react';
 import './Inbox.css';
 import { IoArrowBack } from 'react-icons/io5';
 import { MdCheckCircle } from 'react-icons/md';
+import { FaRegUserCircle } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import ChatDetail from './ChatDetail';
+
+function ContactAvatar({ src, alt, className }) {
+  const [hasError, setHasError] = useState(!src);
+
+  if (hasError) {
+    return (
+      <div className={`${className} avatar-fallback-full`} aria-label={alt}>
+        <FaRegUserCircle />
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className={className}
+      onError={() => setHasError(true)}
+    />
+  );
+}
 
 const Inbox = () => {
   const navigate = useNavigate();
@@ -17,7 +39,8 @@ const Inbox = () => {
       name: 'Priya Vasanth',
       avatar: 'https://via.placeholder.com/48',
       verified: true,
-      message: 'Hi we have an upcomim event and need to place an order. Can you provide a quote?',
+      message:
+        'Hi we have an upcomim event and need to place an order. Can you provide a quote?',
       timeAgo: '6 min ago',
       platform: 'whatsapp',
       category: 'priority',
@@ -29,7 +52,7 @@ const Inbox = () => {
           avatar: 'https://via.placeholder.com/40',
           message: 'Can i get more info... on this product ?',
           timestamp: '6 min ago',
-          isUser: true
+          isUser: true,
         },
         {
           id: 2,
@@ -37,14 +60,14 @@ const Inbox = () => {
           avatar: 'https://via.placeholder.com/40',
           message: 'Price of the product ?',
           timestamp: '5 min ago',
-          isUser: true
-        }
-      ]
+          isUser: true,
+        },
+      ],
     },
     {
       id: 2,
       name: 'Krish Saraf',
-      avatar: 'https://via.placeholder.com/48',
+      avatar: '',
       verified: true,
       message: 'Hello can you tell me the price of the silk saree?',
       timeAgo: '23 min ago',
@@ -54,23 +77,23 @@ const Inbox = () => {
         {
           id: 1,
           sender: 'Krish Saraf',
-          avatar: 'https://via.placeholder.com/40',
+          avatar: '',
           message: 'Hello can you tell me the price of the silk saree?',
           timestamp: '23 min ago',
-          isUser: true
-        }
-      ]
+          isUser: true,
+        },
+      ],
     },
     {
       id: 3,
       name: 'Bindu Murthy',
-      avatar: 'https://via.placeholder.com/48',
+      avatar: '',
       verified: true,
       message: 'Hi what are your delivery timings to Malleshwaram.',
       timeAgo: '36 min ago',
       platform: 'instagram',
       category: 'general',
-      conversationMessages: []
+      conversationMessages: [],
     },
     {
       id: 4,
@@ -82,40 +105,40 @@ const Inbox = () => {
       platform: 'instagram',
       category: 'priority',
       priority: true,
-      conversationMessages: []
+      conversationMessages: [],
     },
     {
       id: 5,
       name: 'Priyank',
-      avatar: 'https://via.placeholder.com/48',
+      avatar: '',
       verified: true,
       message: 'Do you take cash on delivery?',
       timeAgo: '46 min ago',
       platform: 'facebook',
       category: 'general',
-      conversationMessages: []
+      conversationMessages: [],
     },
     {
       id: 6,
       name: 'Naiman',
-      avatar: 'https://via.placeholder.com/48',
+      avatar: '',
       verified: true,
       message: "What's your return policy?",
       timeAgo: '1 hr ago',
       platform: 'facebook',
       category: 'general',
-      conversationMessages: []
-    }
+      conversationMessages: [],
+    },
   ]);
 
   const [platformBreakdown] = useState([
     { name: 'WhatsApp Business', count: 6, icon: '💬' },
     { name: 'Instagram DM', count: 30, icon: '📷' },
-    { name: 'Facebook Messenger', count: 8, icon: '👥' }
+    { name: 'Facebook Messenger', count: 8, icon: '👥' },
   ]);
 
-  const filterMessages = () => {
-    return messages.filter(msg => {
+  const filterMessages = () =>
+    messages.filter((msg) => {
       let tabMatch = true;
       let platformMatch = true;
       let categoryMatch = true;
@@ -136,7 +159,6 @@ const Inbox = () => {
 
       return tabMatch && platformMatch && categoryMatch;
     });
-  };
 
   const filteredMessages = filterMessages();
 
@@ -146,7 +168,7 @@ const Inbox = () => {
 
   const handleSendMessage = (messageText) => {
     if (selectedChat && messageText.trim()) {
-      const updatedMessages = messages.map(msg => {
+      const updatedMessages = messages.map((msg) => {
         if (msg.id === selectedChat.id) {
           return {
             ...msg,
@@ -155,25 +177,23 @@ const Inbox = () => {
               {
                 id: msg.conversationMessages.length + 1,
                 sender: 'You',
-                avatar: 'https://via.placeholder.com/40',
+                avatar: '',
                 message: messageText,
                 timestamp: 'now',
-                isUser: false
-              }
-            ]
+                isUser: false,
+              },
+            ],
           };
         }
         return msg;
       });
       setMessages(updatedMessages);
-      setSelectedChat(updatedMessages.find(m => m.id === selectedChat.id));
+      setSelectedChat(updatedMessages.find((m) => m.id === selectedChat.id));
     }
   };
 
-  // Handle tab clicks
   const handleTabClick = (tabName) => {
     if (tabName === 'new') {
-      // Navigate to Automation page instead of filtering
       navigate('/dashboard/automation');
     } else {
       setActiveTab(tabName);
@@ -182,11 +202,10 @@ const Inbox = () => {
 
   return (
     <div className="inbox-full-container">
-      {/* Header with Back Button */}
       <div className="inbox-header-full">
         <div className="header-top-full">
-          <button 
-            onClick={() => navigate(-1)} 
+          <button
+            onClick={() => navigate(-1)}
             className="back-icon-btn"
             title="Go back"
           >
@@ -195,7 +214,10 @@ const Inbox = () => {
           <h1 className="inbox-title">Unified Social Inbox</h1>
           <div className="header-right-full">
             <MdCheckCircle className="verify-icon-full" />
-            <button className="upgrade-btn-full" onClick={() => navigate('/dashboard/automation')}>
+            <button
+              className="upgrade-btn-full"
+              onClick={() => navigate('/dashboard/automation')}
+            >
               Upgrade
             </button>
           </div>
@@ -203,7 +225,6 @@ const Inbox = () => {
       </div>
 
       <div className="inbox-content-full">
-        {/* Sidebar */}
         <div className="sidebar-full">
           <div className="tab-section-full">
             {[
@@ -211,11 +232,13 @@ const Inbox = () => {
               { label: 'New', icon: '⭐' },
               { label: 'Priority', icon: '🔔' },
               { label: 'Assigned', icon: '✓' },
-              { label: 'Waiting', icon: '⏳' }
+              { label: 'Waiting', icon: '⏳' },
             ].map((tab) => (
               <button
                 key={tab.label}
-                className={`sidebar-tab-full ${activeTab === tab.label.toLowerCase() ? 'active' : ''}`}
+                className={`sidebar-tab-full ${
+                  activeTab === tab.label.toLowerCase() ? 'active' : ''
+                }`}
                 onClick={() => handleTabClick(tab.label.toLowerCase())}
               >
                 <span className="tab-icon-full">{tab.icon}</span>
@@ -225,30 +248,28 @@ const Inbox = () => {
           </div>
         </div>
 
-        {/* Main Content Area */}
         <div className="main-content-area-full">
           {selectedChat ? (
-            // Chat Detail View
-            <ChatDetail 
-              chat={selectedChat} 
+            <ChatDetail
+              chat={selectedChat}
               onClose={() => setSelectedChat(null)}
               onSendMessage={handleSendMessage}
             />
           ) : (
-            // Messages List View
             <>
-              {/* Tabs */}
               <div className="tabs-navigation-full">
                 {[
                   { label: 'All', icon: '📧' },
                   { label: 'New', icon: '➕' },
                   { label: 'Priority', icon: '⚡' },
                   { label: 'Assigned', icon: '📌' },
-                  { label: 'Waiting', icon: '⬇️' }
+                  { label: 'Waiting', icon: '⬇️' },
                 ].map((tab) => (
                   <button
                     key={tab.label}
-                    className={`tab-btn-full ${activeTab === tab.label.toLowerCase() ? 'active' : ''}`}
+                    className={`tab-btn-full ${
+                      activeTab === tab.label.toLowerCase() ? 'active' : ''
+                    }`}
                     onClick={() => handleTabClick(tab.label.toLowerCase())}
                   >
                     {tab.icon} {tab.label}
@@ -257,12 +278,11 @@ const Inbox = () => {
                 <div className="more-options-full">⋯</div>
               </div>
 
-              {/* Filters */}
               <div className="filters-section-full">
                 <div className="filter-group-full">
                   <label>All Platforms</label>
-                  <select 
-                    value={selectedPlatform} 
+                  <select
+                    value={selectedPlatform}
                     onChange={(e) => setSelectedPlatform(e.target.value)}
                     className="filter-select-full"
                   >
@@ -275,8 +295,8 @@ const Inbox = () => {
 
                 <div className="filter-group-full">
                   <label>All Categories</label>
-                  <select 
-                    value={selectedCategory} 
+                  <select
+                    value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
                     className="filter-select-full"
                   >
@@ -289,23 +309,31 @@ const Inbox = () => {
                 <div className="time-display-full">6 min</div>
               </div>
 
-              {/* Messages List */}
               <div className="messages-list-full">
                 {filteredMessages.length > 0 ? (
                   filteredMessages.map((msg) => (
-                    <div 
-                      key={msg.id} 
+                    <div
+                      key={msg.id}
                       className="message-item-full"
                       onClick={() => handleChatClick(msg)}
                     >
-                      <img src={msg.avatar} alt={msg.name} className="avatar-full" />
+                      <ContactAvatar
+                        src={msg.avatar}
+                        alt={msg.name}
+                        className="avatar-full"
+                      />
+
                       <div className="message-content-full">
                         <div className="message-header-full">
                           <h3 className="sender-name-full">
                             {msg.name}
-                            {msg.verified && <span className="verified-badge-full">✓</span>}
+                            {msg.verified && (
+                              <span className="verified-badge-full">✓</span>
+                            )}
                           </h3>
-                          {msg.priority && <span className="priority-badge-full">Priority</span>}
+                          {msg.priority && (
+                            <span className="priority-badge-full">Priority</span>
+                          )}
                         </div>
                         <p className="message-text-full">{msg.message}</p>
                       </div>
@@ -320,7 +348,6 @@ const Inbox = () => {
           )}
         </div>
 
-        {/* Right Sidebar - Only show when no chat is selected */}
         {!selectedChat && (
           <div className="right-sidebar-full">
             <div className="platform-breakdown-full">
