@@ -36,7 +36,7 @@ export const signup = async (req, res) => {
 			name: name || `User ${mobile.slice(-4)}`,
 			email,
 			mobile,
-			password: hashedPassword,
+			password: hashedPassword
 		});
 
 		return res.status(201).json({ message: "User registered successfully" });
@@ -70,6 +70,7 @@ export const login = async (req, res) => {
 				name: user.name,
 				email: user.email,
 				mobile: user.mobile,
+				profession: user.profession
 			},
 		});
 	} catch (error) {
@@ -117,6 +118,51 @@ export const resetPassword = async (req, res) => {
 		await user.save();
 
 		return res.json({ message: "Password updated successfully" });
+	} catch (error) {
+		return res.status(500).json({ error: error.message });
+	}
+};
+
+export const updateProfession = async (req, res) => {
+	const { profession } = req.body;
+	const userId = req.user;
+
+	try {
+		if (!profession) {
+			return res.status(400).json({ message: "Profession is required" });
+		}
+
+		const validProfessions = [
+			"Business Owner",
+			"Aspiring Entrepreneur",
+			"Content Creator",
+			"Service Provider",
+			"Freelancer",
+			"Digital Marketer",
+			"Student / Learner",
+			"Job Seeker",
+			"Investor",
+			"Guest"
+		];
+
+		if (!validProfessions.includes(profession)) {
+			return res.status(400).json({ message: "Invalid profession" });
+		}
+
+		const user = await User.findByIdAndUpdate(
+			userId,
+			{ profession },
+			{ new: true }
+		);
+
+		if (!user) {
+			return res.status(404).json({ message: "User not found" });
+		}
+
+		return res.json({
+			message: "Profession updated successfully",
+			profession: user.profession
+		});
 	} catch (error) {
 		return res.status(500).json({ error: error.message });
 	}

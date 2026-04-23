@@ -22,6 +22,22 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true
+  },
+  profession: {
+    type: String,
+    enum: [
+      "Business Owner",
+      "Aspiring Entrepreneur",
+      "Content Creator",
+      "Service Provider",
+      "Freelancer",
+      "Digital Marketer",
+      "Student / Learner",
+      "Job Seeker",
+      "Investor",
+      "Guest"
+    ],
+    default: "Guest"
   }
 });
 

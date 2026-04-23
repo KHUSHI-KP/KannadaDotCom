@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./Signup.css";
 import background from "./assets/back.jpeg";
 import { FcGoogle } from "react-icons/fc";
@@ -16,6 +16,12 @@ function Signup() {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const navigate = useNavigate();
   const inputRefs = useRef([]);
+
+  useEffect(() => {
+    // Clear any previous role selection when entering signup
+    localStorage.removeItem("role");
+    // console.log("Cleared role from localStorage on Signup mount");
+  }, []);
 
   const handleSendOTP = async () => {
     if (!/^[0-9]{10}$/.test(mobile)) {

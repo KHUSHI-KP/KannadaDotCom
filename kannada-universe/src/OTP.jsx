@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./Otp.css";
 import background from "./assets/back.jpeg";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -16,6 +16,12 @@ function Otp() {
 
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const inputs = useRef([]);
+
+  useEffect(() => {
+    // Clear any previous role selection when entering OTP
+    localStorage.removeItem("role");
+    // console.log("Cleared role from localStorage on OTP mount");
+  }, []);
 
   const handleChange = (value, index) => {
     if (!/^\d?$/.test(value)) return;

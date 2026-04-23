@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./CreatePassword.css";
@@ -21,6 +21,10 @@ function CreatePassword() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    // User is entering password creation - profession will be set in Welcome page after login
+  }, []);
 
   const handleSubmit = async () => {
     setError("");
@@ -54,9 +58,10 @@ function CreatePassword() {
         });
         alert(t("passwordChanged", lang));
       } else {
+        // console.log("Sending to signup API without profession");
         await API.post("/api/auth/signup", {
           mobile,
-          password,
+          password
         });
         alert(t("accountCreated", lang));
       }
