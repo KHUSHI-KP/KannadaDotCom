@@ -38,6 +38,7 @@ function Login() {
 
       localStorage.setItem("authToken", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.removeItem("role");
       setError("");
       navigate("/welcome");
     } catch (err) {

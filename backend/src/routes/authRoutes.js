@@ -4,7 +4,9 @@ import {
 	preSignup,
 	resetPassword,
 	signup,
+	updateProfession
 } from "../controllers/authController.js";
+import protect from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
@@ -19,5 +21,8 @@ router.post("/login", login);
 
 // RESET PASSWORD (OTP is handled on frontend for now)
 router.post("/reset-password", resetPassword);
+
+// UPDATE PROFESSION (protected route)
+router.post("/update-profession", protect, updateProfession);
 
 export default router;
