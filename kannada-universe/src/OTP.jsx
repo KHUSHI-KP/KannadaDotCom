@@ -15,13 +15,24 @@ function Otp() {
   const fromForgot = location.state?.fromForgot || false;
 
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+  const [cooldown, setCooldown] = useState(0); // ✅ added
   const inputs = useRef([]);
 
+  // Clear role on mount
   useEffect(() => {
-    // Clear any previous role selection when entering OTP
     localStorage.removeItem("role");
-    // console.log("Cleared role from localStorage on OTP mount");
   }, []);
+
+  // ✅ Cooldown timer logic
+  useEffect(() => {
+    if (cooldown === 0) return;
+
+    const timer = setInterval(() => {
+      setCooldown((prev) => prev - 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [cooldown]);
 
   const handleChange = (value, index) => {
     if (!/^\d?$/.test(value)) return;
@@ -72,6 +83,13 @@ function Otp() {
     }
   };
 
+  const handleResendOTP = () => {
+    if (cooldown > 0) return;
+
+    alert(t("otpResent", lang));
+    setCooldown(30); // 30 sec cooldown
+  };
+
   return (
     <div
       className="otp-page"
@@ -104,11 +122,15 @@ function Otp() {
             {t("verifyOtp", lang)}
           </button>
 
+          {/* ✅ Updated resend button */}
           <button
             className="resend-btn"
-            onClick={() => alert(t("otpResent", lang))}
+            onClick={handleResendOTP}
+            disabled={cooldown > 0}
           >
-            {t("resendOtp", lang)}
+            {cooldown > 0
+              ? `Resend OTP in ${cooldown}s`
+              : t("resendOtp", lang)}
           </button>
 
         </div>
