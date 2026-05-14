@@ -25,7 +25,6 @@
   background: rgba(255, 255, 255, 0.95);
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
   text-align: center;
-  
   max-height: 90vh;
   overflow-y: auto;
 }
@@ -33,6 +32,7 @@
 .otp-card h2 {
   color: #2b235a;
   margin-bottom: 10px;
+  font-size: 30px;
 }
 
 .otp-sub {
@@ -65,6 +65,7 @@
 .otp-inputs input:focus {
   border: 2px solid #5c4b8a;
   background: white;
+  transform: scale(1.05);
 }
 
 .verify-btn {
@@ -84,12 +85,11 @@
   background: #4a3b70;
 }
 
-.resend {
-  margin-top: 20px;
-  color: #5c4b8a;
-  font-weight: 600;
-  cursor: pointer;
+.verify-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
+
 .resend-btn {
   margin-top: 20px;
   background: transparent;
@@ -98,11 +98,24 @@
   font-weight: 600;
   cursor: pointer;
   font-size: 14px;
+  transition: 0.2s;
 }
 
 .resend-btn:hover {
   text-decoration: underline;
 }
+
+.resend-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.cooldown-text {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #666;
+}
+
 .email-input {
   width: 100%;
   padding: 12px;

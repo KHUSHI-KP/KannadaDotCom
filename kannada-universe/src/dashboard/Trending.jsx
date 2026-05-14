@@ -152,8 +152,23 @@ return (
 
 const list = items.length ? items : DEMO;
 
-return ( <div className="p-0"> <h2 className="text-xl font-semibold">
-{_t("For You")} — {_t("Analytics")} </h2>
+return (
+  <div className="p-0">
+
+    {/* Trending Header */}
+    <div className="bg-white rounded-2xl shadow-md p-6 mb-6">
+      <h1 className="text-3xl font-bold text-[#2b235a]">
+        Trending Business Insights
+      </h1>
+
+      <p className="text-gray-600 mt-2">
+        Explore trending businesses, engagement metrics, and growth opportunities across Karnataka.
+      </p>
+    </div>
+
+    <h2 className="text-xl font-semibold">
+      {_t("For You")} — {_t("Analytics")}
+    </h2>
 
 ```
   {loading && (

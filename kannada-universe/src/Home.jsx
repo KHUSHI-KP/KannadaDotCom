@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
@@ -8,12 +7,10 @@ import logo from "./assets/logo.png";
 function Home() {
   const navigate = useNavigate();
 
-  // load language from localStorage
   const [language, setLanguage] = useState(
     localStorage.getItem("lang") || "en"
   );
 
-  // save language whenever it changes
   useEffect(() => {
     localStorage.setItem("lang", language);
   }, [language]);
@@ -21,6 +18,8 @@ function Home() {
   const translations = {
     en: {
       title: "Your Kannada Universe",
+      subtitle:
+        "Empowering Kannada entrepreneurs, creators, and communities digitally.",
       choose: "Choose Language",
       signup: "Sign Up",
       login: "Login",
@@ -28,23 +27,25 @@ function Home() {
         {
           title: "News & Updates",
           desc: "Stay updated with Karnataka news and trends.",
-          link: "https://publictv.in/"
+          link: "https://publictv.in/",
         },
         {
           title: "Learn Kannada",
           desc: "Interactive lessons and cultural resources.",
-          link: "https://kannada.cc/"
+          link: "https://kannada.cc/",
         },
         {
           title: "Local Businesses",
           desc: "Support and explore Kannada entrepreneurs.",
-          link: "https://fastkannada.com/small-business-ideas-in-kannada/"
-        }
-      ]
+          link: "https://fastkannada.com/small-business-ideas-in-kannada/",
+        },
+      ],
     },
 
     kn: {
       title: "ನಿಮ್ಮ ಕನ್ನಡ ವಿಶ್ವ",
+      subtitle:
+        "ಕನ್ನಡ ಉದ್ಯಮಿಗಳು ಮತ್ತು ಸಮುದಾಯಗಳನ್ನು ಡಿಜಿಟಲ್ ರೀತಿಯಲ್ಲಿ ಬೆಂಬಲಿಸುವ ವೇದಿಕೆ.",
       choose: "ಭಾಷೆ ಆಯ್ಕೆಮಾಡಿ",
       signup: "ಸೈನ್ ಅಪ್",
       login: "ಲಾಗಿನ್",
@@ -52,20 +53,20 @@ function Home() {
         {
           title: "ಸುದ್ದಿಗಳು",
           desc: "ಕರ್ನಾಟಕದ ಇತ್ತೀಚಿನ ಸುದ್ದಿಗಳು.",
-          link: "https://publictv.in/"
+          link: "https://publictv.in/",
         },
         {
           title: "ಕನ್ನಡ ಕಲಿಕೆ",
           desc: "ಕನ್ನಡ ಕಲಿಯಲು ಸಂವಹನಾತ್ಮಕ ಪಾಠಗಳು.",
-          link: "https://kannada.cc/"
+          link: "https://kannada.cc/",
         },
         {
           title: "ಸ್ಥಳೀಯ ವ್ಯವಹಾರಗಳು",
           desc: "ಕನ್ನಡ ಉದ್ಯಮಿಗಳನ್ನು ಬೆಂಬಲಿಸಿ.",
-          link: "https://fastkannada.com/small-business-ideas-in-kannada/"
-        }
-      ]
-    }
+          link: "https://fastkannada.com/small-business-ideas-in-kannada/",
+        },
+      ],
+    },
   };
 
   const t = translations[language];
@@ -94,6 +95,10 @@ function Home() {
       <section className="hero">
         <div className="left">
           <h1>{t.title}</h1>
+
+          <p className="hero-subtitle">
+            {t.subtitle}
+          </p>
         </div>
 
         <div className="language-box">
@@ -109,10 +114,23 @@ function Home() {
         </div>
       </section>
 
-      <div style={{ margin: "20px 0" }}>
-  
-  
-</div>
+      {/* QUICK STATS */}
+      <section className="quick-stats">
+        <div className="stat-card">
+          <h3>10K+</h3>
+          <p>Community Members</p>
+        </div>
+
+        <div className="stat-card">
+          <h3>500+</h3>
+          <p>Local Businesses</p>
+        </div>
+
+        <div className="stat-card">
+          <h3>24/7</h3>
+          <p>Digital Engagement</p>
+        </div>
+      </section>
 
       {/* FLOATING KANNADA WORDS */}
       <div className="floating-words">

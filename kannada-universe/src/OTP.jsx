@@ -5,7 +5,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { t } from "./i18n";
 
 function Otp() {
-
   const lang = localStorage.getItem("lang") || "en";
 
   const navigate = useNavigate();
@@ -15,13 +14,24 @@ function Otp() {
   const fromForgot = location.state?.fromForgot || false;
 
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+  const [cooldown, setCooldown] = useState(30);
+  const [loading, setLoading] = useState(false);
+
   const inputs = useRef([]);
 
   useEffect(() => {
-    // Clear any previous role selection when entering OTP
     localStorage.removeItem("role");
-    // console.log("Cleared role from localStorage on OTP mount");
   }, []);
+
+  useEffect(() => {
+    if (cooldown <= 0) return;
+
+    const timer = setInterval(() => {
+      setCooldown((prev) => prev - 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [cooldown]);
 
   const handleChange = (value, index) => {
     if (!/^\d?$/.test(value)) return;
@@ -60,16 +70,29 @@ function Otp() {
       return;
     }
 
-    if (enteredOtp === "123456") {
-      navigate("/create-password", {
-        state: {
-          mobile,
-          fromForgot
-        }
-      });
-    } else {
-      alert(t("invalidOtp", lang));
-    }
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+
+      if (enteredOtp === "123456") {
+        navigate("/create-password", {
+          state: {
+            mobile,
+            fromForgot,
+          },
+        });
+      } else {
+        alert(t("invalidOtp", lang));
+      }
+    }, 1000);
+  };
+
+  const handleResendOtp = () => {
+    if (cooldown > 0) return;
+
+    alert(t("otpResent", lang));
+    setCooldown(30);
   };
 
   return (
@@ -79,7 +102,6 @@ function Otp() {
     >
       <div className="otp-overlay">
         <div className="otp-card">
-
           <h2>{t("otpVerification", lang)}</h2>
 
           <p className="otp-sub">
@@ -100,17 +122,29 @@ function Otp() {
             ))}
           </div>
 
-          <button className="verify-btn" onClick={handleVerify}>
-            {t("verifyOtp", lang)}
+          <button
+            className="verify-btn"
+            onClick={handleVerify}
+            disabled={loading}
+          >
+            {loading ? "Verifying..." : t("verifyOtp", lang)}
           </button>
 
           <button
             className="resend-btn"
-            onClick={() => alert(t("otpResent", lang))}
+            onClick={handleResendOtp}
+            disabled={cooldown > 0}
           >
-            {t("resendOtp", lang)}
+            {cooldown > 0
+              ? `Resend OTP in ${cooldown}s`
+              : t("resendOtp", lang)}
           </button>
 
+          {cooldown > 0 && (
+            <p className="cooldown-text">
+              Please wait before requesting another OTP.
+            </p>
+          )}
         </div>
       </div>
     </div>
